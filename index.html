@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidenta — Digital Assets intelligence built to make decisions</title>
+<meta name="description" content="Evidenta tracks what banks and financial institutions are launching in digital assets — products, partnerships, investments and the people behind them.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: #111; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #3b82f6; text-decoration: none; }
+  a:hover { color: #2563eb; }
+  img { max-width: 100%; }
+
+  .wrap { width: 100%; max-width: 1440px; margin: 0 auto; background: #fff; overflow: hidden; }
+
+  /* NAV */
+  nav.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 64px; border-bottom: 1px solid #eee; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .brand-name { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 500; color: #111; letter-spacing: -0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 44px; }
+  .nav-links a { font-size: 15px; font-weight: 500; color: #333; }
+  .btn-primary { background: #2563eb; color: #fff; font-size: 14px; font-weight: 600; padding: 12px 22px; border-radius: 8px; white-space: nowrap; }
+  .btn-primary:hover { color: #fff; background: #1d4ed8; }
+
+  /* HERO */
+  .hero { position: relative; padding: 96px 64px 64px; overflow: hidden; background: #fff; }
+  .hero-bg { position: absolute; bottom: 0; left: 0; width: 100%; height: 340px; opacity: 0.14; pointer-events: none; }
+  .hero-title { position: relative; z-index: 1; text-align: center; }
+  .hero-title h1 { font-size: 64px; line-height: 1.12; font-weight: 700; letter-spacing: -0.03em; color: #111; margin: 0; }
+  .hero-title .accent { color: #3b82f6; }
+
+  .mock { position: relative; z-index: 1; max-width: 940px; margin: 56px auto 0; }
+  .mock-lid { background: linear-gradient(155deg,#2b2b2d,#1a1a1c); border-radius: 16px; padding: 14px 14px 10px; box-shadow: 0 30px 60px -20px rgba(15,23,42,0.35); }
+  .mock-screen { position: relative; background: #000; border-radius: 5px; overflow: hidden; aspect-ratio: 16/10.4; }
+  .mock-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 12px; height: 6px; background: #0a0a0a; border-radius: 0 0 5px 5px; z-index: 2; }
+  .mock-content { position: absolute; inset: 0; background: #fff; padding: 18px 20px; }
+  .mock-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; height: 100%; min-width: 0; }
+  .mock-card { min-width: 0; background: #fff; border: 2.5px solid #1e1e1e; border-radius: 18px; padding: 20px 22px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; }
+  .mock-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; min-width: 0; }
+  .mock-card-head img { height: 26px; max-width: 132px; min-width: 0; object-fit: contain; }
+  .mock-badge { margin-left: auto; font-size: 14px; font-weight: 700; padding: 8px 16px; border-radius: 12px; border: 1.5px solid #1e1e1e; white-space: nowrap; min-width: 0; }
+  .mock-badge.high { background: #b2f2bb; color: #0b3d1f; }
+  .mock-badge.rising { background: #ffec99; color: #5c4200; }
+  .mock-badge.extra { background: #40c057; color: #08260f; }
+  .mock-region { font-size: 19px; font-weight: 600; color: #111; margin-bottom: 16px; }
+  .mock-tags { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; margin-top: auto; min-width: 0; }
+  .mock-tag { background: #a5d8ff; border: 2px solid #1e1e1e; border-radius: 12px; padding: 14px 8px; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; color: #0b2e4d; line-height: 1.25; display: flex; align-items: center; justify-content: center; min-height: 86px; }
+  .mock-hinge { height: 7px; background: #0f0f10; margin: 0 5px; }
+  .mock-base { position: relative; height: 18px; margin: 0 -26px; background: linear-gradient(#dcdcde,#b9b9bc); border-radius: 0 0 12px 12px; box-shadow: 0 6px 14px -6px rgba(0,0,0,0.3); }
+  .mock-base-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 7px; background: #a3a3a6; border-radius: 0 0 8px 8px; }
+
+  /* SECTION HEADINGS */
+  h2.section-title { font-size: 44px; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 40px; max-width: 820px; text-align: center; margin-left: auto; margin-right: auto; color: #111; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 80px 64px; background: #fff; }
+  .testimonials h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 40px; text-align: center; color: #111; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .testimonials h2 .brand-inline { display: inline-flex; align-items: center; gap: 6px; }
+  .testimonials h2 .brand-inline span { font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
+  .testimonial-grid { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .testimonial-card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 36px; display: flex; flex-direction: column; }
+  .testimonial-source { font-size: 15px; font-weight: 600; margin-bottom: 20px; }
+  .testimonial-quote { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 19px; line-height: 1.6; color: #222; margin: 0 0 24px; }
+  .testimonial-person { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+  .testimonial-person img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+  .testimonial-name { font-size: 15px; font-weight: 600; color: #111; }
+  .testimonial-role { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: #777; }
+
+  /* CHAOS */
+  .chaos { padding: 96px 64px; text-align: center; }
+  .eyebrow { font-size: 15px; font-weight: 700; color: #3b82f6; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 14px; }
+  .chaos h2 { font-size: 48px; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 44px; color: #111; }
+  .chaos-diagram { position: relative; max-width: 720px; height: 420px; margin: 0 auto; }
+  .chaos-core { position: absolute; top: 50%; left: 50%; width: 170px; height: 170px; transform: translate(-50%,-50%); border-radius: 50%; background: radial-gradient(circle at 32% 30%,#93c5fd,#3b82f6 55%,#1d4ed8 100%); box-shadow: 0 30px 60px -20px rgba(59,130,246,0.5); }
+  .chaos-ring { position: absolute; top: 50%; left: 50%; width: 320px; height: 320px; transform: translate(-50%,-50%); border-radius: 50%; border: 1px dashed #dbeafe; }
+  .chaos-pill { position: absolute; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 500; color: #111; background: #fff; border: 1px solid #eee; padding: 11px 20px; border-radius: 30px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); white-space: nowrap; }
+  .p1 { top: 6%; left: 6%; }
+  .p2 { top: 2%; right: 8%; }
+  .p3 { top: 32%; left: 0%; }
+  .p4 { top: 34%; right: 2%; }
+  .p5 { bottom: 20%; left: 10%; }
+  .p6 { bottom: 16%; right: 12%; }
+  .p7 { bottom: 2%; left: 38%; }
+  .chaos-tagline { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: #3b82f6; margin-top: 24px; }
+
+  /* QUADRANT */
+  .quadrant { padding: 0 64px 96px; }
+  .quadrant-frame { max-width: 1180px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid #e0e0e0; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+  .quadrant-frame img { width: 100%; display: block; }
+
+  /* DATA CARDS */
+  .data-section { padding: 96px 64px; background: #fff; }
+  .data-grid { max-width: 1180px; margin: 0 auto 32px; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .data-card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 32px; }
+  .data-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(59,130,246,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .data-title { font-size: 19px; font-weight: 600; color: #111; margin-bottom: 6px; }
+  .data-desc { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; color: #777; line-height: 1.5; margin-bottom: 16px; }
+  .data-list { display: flex; flex-direction: column; gap: 6px; }
+  .data-list span { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #333; }
+
+  /* PRODUCT CARDS */
+  .product-section { padding: 96px 64px; }
+  .product-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+  .product-card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 36px; }
+  .product-card img { width: 44px; height: 44px; margin-bottom: 18px; }
+  .product-card h3 { font-size: 22px; font-weight: 600; margin: 0 0 12px; color: #111; }
+  .product-card p { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; line-height: 1.6; color: #777; margin: 0; }
+
+  /* PERSONAS */
+  .persona-section { padding: 96px 64px; background: #fff; text-align: center; }
+  .persona-tags { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 900px; margin: 0 auto 56px; }
+  .persona-tags span { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; color: #2563eb; background: rgba(59,130,246,0.1); padding: 9px 18px; border-radius: 20px; }
+  .persona-grid { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+  .persona-card { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 0.68; background: #111; }
+  .persona-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
+  .persona-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%); }
+  .persona-label { position: absolute; bottom: 20px; left: 20px; font-size: 22px; font-weight: 700; color: #fff; z-index: 1; }
+
+  /* CTA */
+  .cta { padding: 120px 64px; text-align: center; }
+  .cta h2 { font-size: 52px; font-weight: 700; letter-spacing: -0.03em; margin: 0; color: #111; }
+  .cta-rule { width: 56px; height: 4px; background: #2563eb; border-radius: 2px; margin: 24px auto 44px; }
+  .cta-person { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .cta-person img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+  .cta-name { font-size: 18px; font-weight: 600; color: #111; }
+  .cta-role { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; color: #777; }
+  .cta a.btn-primary { margin-top: 8px; font-size: 16px; padding: 15px 28px; border-radius: 10px; }
+
+  /* FOOTER */
+  footer.site-footer { padding: 32px 64px; border-top: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; }
+  .footer-brand span { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 500; color: #111; }
+  .footer-copy { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: #999; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    nav.site-nav, .hero, .testimonials, .chaos, .quadrant, .data-section, .product-section, .persona-section, .cta, footer.site-footer { padding-left: 28px; padding-right: 28px; }
+    .nav-links { display: none; }
+    .hero-title h1 { font-size: 40px; }
+    .testimonial-grid, .data-grid, .product-grid { grid-template-columns: 1fr; }
+    .persona-grid { grid-template-columns: repeat(2,1fr); }
+    .chaos h2, .cta h2 { font-size: 32px; }
+    h2.section-title, .data-section h2, .product-section h2, .persona-section h2 { font-size: 30px; }
+    .chaos-diagram { height: 520px; }
+    .chaos-pill { font-size: 12px; padding: 8px 14px; }
+    .mock-grid { grid-template-columns: 1fr; gap: 10px; }
+  }
+  @media (max-width: 640px) {
+    /* tighten vertical rhythm so sections don't leave huge dead gaps on phones */
+    .hero { padding-top: 64px; padding-bottom: 40px; }
+    .testimonials, .chaos, .data-section, .product-section, .persona-section { padding-top: 56px; padding-bottom: 56px; }
+    .quadrant { padding-bottom: 56px; }
+    .cta { padding-top: 72px; padding-bottom: 72px; }
+    nav.site-nav { padding-top: 18px; padding-bottom: 18px; }
+
+    h2.section-title, .data-section h2, .product-section h2, .persona-section h2 { margin-bottom: 28px; }
+    .testimonials h2 { margin-bottom: 28px; }
+    .chaos h2 { margin-bottom: 28px; }
+
+    /* laptop mockup: drop the fixed aspect-ratio/absolute layout so a single stacked
+       column of cards can grow the frame naturally instead of being clipped */
+    .mock { margin-top: 36px; }
+    .mock-lid { padding: 10px 10px 8px; border-radius: 13px; }
+    .mock-screen { aspect-ratio: auto; border-radius: 4px; }
+    .mock-content { position: static; padding: 14px; }
+    .mock-grid { gap: 10px; }
+    .mock-card { padding: 16px; border-width: 2px; border-radius: 14px; }
+    .mock-card-head { flex-wrap: wrap; row-gap: 6px; margin-bottom: 8px; }
+    .mock-card-head img { height: 20px; max-width: 100px; }
+    .mock-badge { font-size: 12px; padding: 5px 12px; white-space: normal; }
+    .mock-region { font-size: 16px; margin-bottom: 12px; }
+    .mock-tags { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px; }
+    .mock-tag { font-size: 12px; min-height: 48px; padding: 10px 6px; }
+    .mock-base { margin: 0 -18px; }
+
+    /* persona interest pills: shrink so more sit per row instead of stacking tall */
+    .persona-tags { gap: 8px; margin-bottom: 40px; }
+    .persona-tags span { font-size: 12px; padding: 7px 14px; }
+
+    /* chaos diagram: the desktop pill positions were tuned for a 720px-wide box;
+       on a narrow phone the same percentages crowd pills into each other, so
+       respace them vertically in a single loose column around the sphere */
+    .chaos-diagram { height: 560px; max-width: 320px; }
+    .chaos-pill { font-size: 12.5px; padding: 8px 14px; }
+    .p1 { top: 2%; left: 2%; }
+    .p2 { top: 2%; right: 0%; }
+    .p3 { top: 26%; left: -4%; }
+    .p4 { top: 44%; right: -6%; }
+    .p5 { bottom: 24%; left: -2%; }
+    .p6 { bottom: 10%; right: -2%; }
+    .p7 { bottom: 0%; left: 30%; }
+  }
+  @media (max-width: 480px) {
+    nav.site-nav { padding-left: 20px; padding-right: 20px; gap: 10px; }
+    .brand-name { font-size: 18px; }
+    .btn-primary { padding: 10px 16px; font-size: 13px; }
+    .hero, .testimonials, .chaos, .quadrant, .data-section, .product-section, .persona-section, .cta, footer.site-footer { padding-left: 20px; padding-right: 20px; }
+    .hero-title h1 { font-size: 32px; }
+    .chaos h2 { font-size: 26px; }
+    h2.section-title, .data-section h2, .product-section h2, .persona-section h2 { font-size: 24px; }
+    .persona-grid { grid-template-columns: 1fr 1fr; }
+    .cta h2 { font-size: 34px; }
+    footer.site-footer { justify-content: center; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <div class="brand">
+      <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect x="0" y="0" width="18" height="18" rx="3" fill="#3b82f6"></rect><rect x="22" y="0" width="18" height="18" rx="3" fill="#111" opacity="0.2"></rect><rect x="0" y="22" width="18" height="18" rx="3" fill="#111" opacity="0.1"></rect><rect x="22" y="22" width="18" height="18" rx="3" fill="#111" opacity="0.4"></rect></svg>
+      <span class="brand-name">evidenta</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Product</a>
+      <a href="#">Research</a>
+      <a href="#">Methodology</a>
+    </div>
+    <a href="#demo" class="btn-primary">Book a Demo</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-bg" viewBox="0 0 1920 340" fill="none" preserveAspectRatio="xMidYMax slice">
+      <g fill="#93c5fd" opacity="0.5">
+        <rect x="80" y="120" width="60" height="220"></rect><rect x="160" y="90" width="45" height="250"></rect><rect x="250" y="140" width="70" height="200"></rect>
+        <rect x="500" y="100" width="80" height="240"></rect><rect x="650" y="70" width="40" height="270"></rect><rect x="880" y="40" width="55" height="300"></rect>
+        <rect x="1120" y="70" width="45" height="270"></rect><rect x="1350" y="90" width="50" height="250"></rect><rect x="1580" y="50" width="55" height="290"></rect><rect x="1800" y="90" width="50" height="250"></rect>
+      </g>
+      <g fill="#60a5fa" opacity="0.6">
+        <rect x="40" y="190" width="80" height="150"></rect><rect x="210" y="200" width="90" height="140"></rect><rect x="440" y="170" width="100" height="170"></rect>
+        <rect x="690" y="180" width="80" height="160"></rect><rect x="920" y="150" width="90" height="190"></rect><rect x="1160" y="180" width="70" height="160"></rect>
+        <rect x="1390" y="190" width="85" height="150"></rect><rect x="1620" y="160" width="75" height="180"></rect><rect x="1840" y="180" width="80" height="160"></rect>
+      </g>
+    </svg>
+    <div class="hero-title">
+      <h1>Digital Assets intelligence<br><span class="accent">built to make decisions</span></h1>
+    </div>
+
+    <div class="mock">
+      <div class="mock-lid">
+        <div class="mock-screen">
+          <div class="mock-notch"></div>
+          <div class="mock-content">
+            <div class="mock-grid">
+              <div class="mock-card">
+                <div class="mock-card-head">
+                  <img src="assets/logo-mini-socgen.png" alt="Societe Generale">
+                  <span class="mock-badge high">High Activity</span>
+                </div>
+                <div class="mock-region">France 🇫🇷 G-SIB</div>
+                <div class="mock-tags">
+                  <div class="mock-tag">Stablecoins</div>
+                  <div class="mock-tag">Tokenized Bonds</div>
+                  <div class="mock-tag">Tokenized Funds</div>
+                </div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-card-head">
+                  <img src="assets/logo-mini-revolut.png" alt="Revolut">
+                  <span class="mock-badge rising">Rising Activity</span>
+                </div>
+                <div class="mock-region">UK 🇬🇧 Neobank</div>
+                <div class="mock-tags">
+                  <div class="mock-tag">Stablecoins</div>
+                  <div class="mock-tag">Crypto Trading</div>
+                  <div class="mock-tag">Funds</div>
+                </div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-card-head">
+                  <img src="assets/logo-mini-jpmorgan.png" alt="JP Morgan">
+                  <span class="mock-badge extra">Extra Activity</span>
+                </div>
+                <div class="mock-region">US 🇺🇸 G-SIB</div>
+                <div class="mock-tags">
+                  <div class="mock-tag">Tokenized deposits</div>
+                  <div class="mock-tag">Institutional collateral</div>
+                  <div class="mock-tag">Settlement Infrastructure</div>
+                </div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-card-head">
+                  <img src="assets/logo-mini-abnamro.png" alt="ABN AMRO">
+                  <span class="mock-badge high">High Activity</span>
+                </div>
+                <div class="mock-region">Netherlands 🇳🇱 D-SIB</div>
+                <div class="mock-tags">
+                  <div class="mock-tag">Bond tokenization</div>
+                  <div class="mock-tag">Digital asset custody</div>
+                  <div class="mock-tag">Secondary market pilots</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mock-hinge"></div>
+      <div class="mock-base">
+        <div class="mock-base-notch"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <h2>
+      What banks find useful in
+      <span class="brand-inline">
+        <svg width="28" height="28" viewBox="0 0 40 40" fill="none"><rect x="0" y="0" width="18" height="18" rx="3" fill="#3b82f6"></rect><rect x="22" y="0" width="18" height="18" rx="3" fill="#111" opacity="0.2"></rect><rect x="0" y="22" width="18" height="18" rx="3" fill="#111" opacity="0.1"></rect><rect x="22" y="22" width="18" height="18" rx="3" fill="#111" opacity="0.4"></rect></svg>
+        <span>evidenta</span>
+      </span>
+    </h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-source" style="color:#0a5c4a">SeacoastBank · 100 Years</div>
+        <svg width="22" height="16" viewBox="0 0 24 18" fill="none" style="margin-bottom:14px"><path d="M0 18V9C0 4 3 0 8 0V4C6 4 4 6 4 9H8V18H0ZM14 18V9C14 4 17 0 22 0V4C20 4 18 6 18 9H22V18H14Z" fill="#3b82f6"></path></svg>
+        <p class="testimonial-quote">Love the tool! Really gives you an overview of what is going on. Have to think it is an eye opener for banks that don't have a blockchain strategy in place.</p>
+        <div class="testimonial-person">
+          <img src="assets/ned.jpeg" alt="Ned Thompson">
+          <div>
+            <div class="testimonial-name">Ned Thompson</div>
+            <div class="testimonial-role">VP, Treasury Management Officer IV</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-source" style="color:#0018a8">Deutsche Bank</div>
+        <svg width="22" height="16" viewBox="0 0 24 18" fill="none" style="margin-bottom:14px"><path d="M0 18V9C0 4 3 0 8 0V4C6 4 4 6 4 9H8V18H0ZM14 18V9C14 4 17 0 22 0V4C20 4 18 6 18 9H22V18H14Z" fill="#3b82f6"></path></svg>
+        <p class="testimonial-quote">I really liked it. I think it's super interesting. Very, very well done. How the platform shows every single graphic and the information. It's super, super complete.</p>
+        <div class="testimonial-person">
+          <img src="assets/fernando.jpg" alt="Fernando Carrillo Martinez">
+          <div>
+            <div class="testimonial-name">Fernando Carrillo Martinez</div>
+            <div class="testimonial-role">AVP Wealth Management</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAOS -->
+  <section class="chaos">
+    <div class="eyebrow">The Challenge</div>
+    <h2>Digital Assets space is chaotic</h2>
+    <div class="chaos-diagram">
+      <div class="chaos-core"></div>
+      <div class="chaos-ring"></div>
+      <span class="chaos-pill p1">New products</span>
+      <span class="chaos-pill p2">New chains</span>
+      <span class="chaos-pill p3">Announcements</span>
+      <span class="chaos-pill p4">Tokenized Funds</span>
+      <span class="chaos-pill p5">Stablecoins</span>
+      <span class="chaos-pill p6">Regulation Updates</span>
+      <span class="chaos-pill p7">New acts</span>
+    </div>
+    <div class="chaos-tagline">Major events happening every day</div>
+  </section>
+
+  <!-- QUADRANT -->
+  <section class="quadrant">
+    <h2 class="section-title">Track what Banks and Financial Institutions are launching</h2>
+    <div class="quadrant-frame">
+      <img src="assets/shot-quadrant.png" alt="Dutch Financial Sector Digital Assets Adoption Map">
+    </div>
+  </section>
+
+  <!-- DATA CARDS -->
+  <section class="data-section">
+    <h2 class="section-title">Access the data behind tokenization programs</h2>
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="data-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#3b82f6" stroke-width="1.6"></rect><rect x="14" y="3" width="7" height="7" rx="1" stroke="#3b82f6" stroke-width="1.6"></rect><rect x="3" y="14" width="7" height="7" rx="1" stroke="#3b82f6" stroke-width="1.6"></rect><rect x="14" y="14" width="7" height="7" rx="1" stroke="#3b82f6" stroke-width="1.6"></rect></svg></div>
+        <div class="data-title">Digital Assets Products</div>
+        <div class="data-desc">What products do FIs launch and how</div>
+        <div class="data-list">
+          <span>→ Technical stack</span>
+          <span>→ Regulatory frameworks</span>
+          <span>→ Go-to-Market</span>
+        </div>
+      </div>
+      <div class="data-card">
+        <div class="data-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"></path><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+        <div class="data-title">Strategic partnerships</div>
+        <div class="data-desc">Which partners FIs have and for which products</div>
+        <div class="data-list">
+          <span>→ Tech partners</span>
+          <span>→ Distribution partners</span>
+          <span>→ Clients &amp; Investors</span>
+        </div>
+      </div>
+      <div class="data-card">
+        <div class="data-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+        <div class="data-title">Investments</div>
+        <div class="data-desc">Where do FIs allocate capital in digital assets</div>
+        <div class="data-list">
+          <span>→ Acquisitions</span>
+          <span>→ Fundraising</span>
+          <span>→ Startup investments</span>
+          <span>→ Vendor spends</span>
+        </div>
+      </div>
+      <div class="data-card">
+        <div class="data-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        <div class="data-title">Service providers</div>
+        <div class="data-desc">Which providers FIs use to grow in digital assets</div>
+        <div class="data-list">
+          <span>→ Advisors</span>
+          <span>→ Tech vendors</span>
+          <span>→ Legal services</span>
+        </div>
+      </div>
+      <div class="data-card">
+        <div class="data-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="3" stroke="#3b82f6" stroke-width="1.6"></circle><path d="M2 21v-1c0-2.8 2.2-5 5-5h4c2.8 0 5 2.2 5 5v1" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"></path><circle cx="17" cy="8" r="2.5" stroke="#3b82f6" stroke-width="1.6"></circle><path d="M16 21v-1c0-1.5-.5-2.8-1.4-3.8" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+        <div class="data-title">Domain leadership</div>
+        <div class="data-desc">Decision-makers inside FIs digital assets programmes</div>
+        <div class="data-list">
+          <span>→ Heads of Strategy</span>
+          <span>→ Directors of Innovation</span>
+          <span>→ Blockchain Leads</span>
+          <span>→ VPs of Treasury</span>
+        </div>
+      </div>
+      <div class="data-card">
+        <div class="data-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        <div class="data-title">Events tracking</div>
+        <div class="data-desc">All events around FIs digital assets business</div>
+        <div class="data-list">
+          <span>→ New products</span>
+          <span>→ New vendors</span>
+          <span>→ Regulatory approvals</span>
+          <span>→ New investments or acquisitions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAUNCH PRODUCTS -->
+  <section class="product-section">
+    <h2 class="section-title">Launch your Digital Assets products with data to back</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="assets/icon-strategy-plan.png" alt="">
+        <h3>Build Digital Asset Strategy</h3>
+        <p>See which digital assets plays market adopts the most.<br><br>Play attack or defense, depending on your goals.</p>
+      </div>
+      <div class="product-card">
+        <img src="assets/icon-product-cycle.png" alt="">
+        <h3>Shape product decisions</h3>
+        <p>See the stack and partnerships behind leading digital assets programs.<br><br>Understand what technologies and partners does your organization need to succeed.</p>
+      </div>
+      <div class="product-card">
+        <img src="assets/icon-binoculars.png" alt="">
+        <h3>Track competitors</h3>
+        <p>Watch where your competitors place their bets.<br><br>So you can predict your organization's next moves.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILT FOR FIs -->
+  <section class="persona-section">
+    <h2 class="section-title">Built for financial institutions on their Digital Asset journey</h2>
+    <div class="persona-tags">
+      <span>Heads of Digital Assets</span>
+      <span>Head of Innovations</span>
+      <span>Heads of Innovations</span>
+      <span>Heads of Product</span>
+      <span>Consultants</span>
+      <span>Researchers</span>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <img src="assets/persona-banks.jpg" alt="Banks">
+        <div class="persona-label">Banks</div>
+      </div>
+      <div class="persona-card">
+        <img src="assets/persona-fmis.jpg" alt="FMIs">
+        <div class="persona-label">FMIs</div>
+      </div>
+      <div class="persona-card">
+        <img src="assets/persona-advisory.jpg" alt="Advisory">
+        <div class="persona-label">Advisory</div>
+      </div>
+      <div class="persona-card">
+        <img src="assets/persona-fintechs.jpg" alt="Fintechs">
+        <div class="persona-label">Fintechs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="demo">
+    <h2>Let's arrange a demo</h2>
+    <div class="cta-rule"></div>
+    <div class="cta-person">
+      <img src="assets/founder-maxim.jpg" alt="Maxim Krasnov">
+      <div>
+        <div class="cta-name">Maxim Krasnov</div>
+        <div class="cta-role">Founder &amp; CEO</div>
+      </div>
+      <a href="#" class="btn-primary">Book a Demo</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><rect x="0" y="0" width="18" height="18" rx="3" fill="#3b82f6"></rect><rect x="22" y="0" width="18" height="18" rx="3" fill="#111" opacity="0.2"></rect><rect x="0" y="22" width="18" height="18" rx="3" fill="#111" opacity="0.1"></rect><rect x="22" y="22" width="18" height="18" rx="3" fill="#111" opacity="0.4"></rect></svg>
+      <span>evidenta</span>
+    </div>
+    <span class="footer-copy">© 2026 Evidenta</span>
+    <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="#999"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"></path></svg></a>
+  </footer>
+
+</div>
+
+</body>
+</html>
