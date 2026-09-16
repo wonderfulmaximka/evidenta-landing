@@ -103,8 +103,41 @@
   .chaos { padding: 96px 64px; text-align: center; background: var(--bg-alt); }
   .chaos h2 { font-size: 46px; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 44px; color: var(--ink); }
   .chaos-diagram { position: relative; max-width: 720px; height: 420px; margin: 0 auto; }
-  .chaos-core { position: absolute; top: 50%; left: 50%; width: 170px; height: 170px; transform: translate(-50%,-50%); border-radius: 50%; background: radial-gradient(circle at 32% 30%,#93c5fd,var(--accent-bright) 55%,#1d4ed8 100%); box-shadow: 0 30px 60px -20px rgba(59,130,246,0.5); }
-  .chaos-ring { position: absolute; top: 50%; left: 50%; width: 320px; height: 320px; transform: translate(-50%,-50%); border-radius: 50%; border: 1px dashed #dbeafe; }
+  /* planet: layered gradients for a lit sphere (highlight, cloud/continent
+     mottling, terminator shadow) plus a soft atmospheric glow */
+  .chaos-core {
+    position: absolute; top: 50%; left: 50%; width: 170px; height: 170px; z-index: 2;
+    transform: translate(-50%,-50%); border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 26%, rgba(255,255,255,0.65), rgba(255,255,255,0) 26%),
+      radial-gradient(circle at 70% 62%, rgba(6,14,46,0.4), rgba(6,14,46,0) 45%),
+      radial-gradient(circle at 40% 75%, rgba(255,255,255,0.12), rgba(255,255,255,0) 30%),
+      radial-gradient(circle at 36% 38%, #cfe6ff, #93c5fd 32%, var(--accent-bright) 58%, #1d4ed8 84%, #102a72 100%);
+    box-shadow:
+      inset -24px -20px 42px rgba(3,10,36,0.55),
+      inset 12px 10px 26px rgba(255,255,255,0.22),
+      0 30px 60px -20px rgba(59,130,246,0.5);
+  }
+  .chaos-core::after {
+    content: ''; position: absolute; inset: -10px; border-radius: 50%; z-index: -1;
+    background: radial-gradient(circle, rgba(147,197,253,0.4), rgba(147,197,253,0) 72%);
+    filter: blur(1px);
+  }
+
+  /* orbit: a tilted elliptical ring with a small moon traveling around it,
+     centered on the planet */
+  .chaos-orbit { position: absolute; top: 50%; left: 50%; width: 360px; height: 150px; z-index: 1; transform: translate(-50%,-50%) rotate(-14deg); }
+  .chaos-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px dashed #c9def7; }
+  .chaos-moon {
+    position: absolute; top: 50%; left: 50%; width: 13px; height: 13px; margin: -6.5px;
+    border-radius: 50%; z-index: 3;
+    background: radial-gradient(circle at 35% 30%, #ffffff, #cbd8ea 55%, #7c8ba3 100%);
+    box-shadow: 0 2px 6px rgba(15,23,42,0.35);
+    offset-path: ellipse(180px 75px at 50% 50%);
+    animation: chaos-orbit-move 11s linear infinite;
+  }
+  @keyframes chaos-orbit-move { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .chaos-moon { animation: none; offset-distance: 15%; } }
   .chaos-pill { position: absolute; font-size: 15px; font-weight: 500; color: var(--ink); background: #fff; border: 1px solid var(--line); padding: 11px 20px; border-radius: 30px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); white-space: nowrap; }
   .p1 { top: 6%; left: 6%; }
   .p2 { top: 2%; right: 8%; }
@@ -212,6 +245,8 @@
        on a narrow phone the same percentages crowd pills into each other, so
        respace them vertically in a single loose column around the sphere */
     .chaos-diagram { height: 560px; max-width: 320px; }
+    .chaos-orbit { width: 260px; height: 108px; }
+    .chaos-moon { offset-path: ellipse(130px 54px at 50% 50%); }
     .chaos-pill { font-size: 12.5px; padding: 8px 14px; }
     .p1 { top: 2%; left: 2%; }
     .p2 { top: 2%; right: 0%; }
@@ -347,8 +382,11 @@
     <div class="eyebrow center">The Challenge</div>
     <h2>Digital Assets space is chaotic</h2>
     <div class="chaos-diagram">
+      <div class="chaos-orbit">
+        <div class="chaos-ring"></div>
+        <span class="chaos-moon"></span>
+      </div>
       <div class="chaos-core"></div>
-      <div class="chaos-ring"></div>
       <span class="chaos-pill p1">New products</span>
       <span class="chaos-pill p2">New chains</span>
       <span class="chaos-pill p3">Announcements</span>
