@@ -70,18 +70,8 @@
   .mock-lid { background: linear-gradient(155deg,#2b2b2d,#1a1a1c); border-radius: 16px; padding: 14px 14px 10px; box-shadow: 0 30px 60px -20px rgba(15,23,42,0.35); }
   .mock-screen { position: relative; background: #000; border-radius: 5px; overflow: hidden; aspect-ratio: 16/10.4; }
   .mock-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 12px; height: 6px; background: #0a0a0a; border-radius: 0 0 5px 5px; z-index: 2; }
-  .mock-content { position: absolute; inset: 0; background: #fff; padding: 14px; }
-  .mock-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; height: 100%; min-width: 0; }
-  .mock-card { min-width: 0; background: #fff; border: 2px solid #1e1e1e; border-radius: 14px; padding: 14px 15px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; }
-  .mock-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-width: 0; }
-  .mock-card-head img { height: 18px; max-width: 88px; min-width: 0; object-fit: contain; flex-shrink: 1; }
-  .mock-badge { margin-left: auto; font-size: 10.5px; font-weight: 700; padding: 5px 9px; border-radius: 9px; border: 1.5px solid #1e1e1e; white-space: nowrap; min-width: 0; flex-shrink: 0; }
-  .mock-badge.high { background: #b2f2bb; color: #0b3d1f; }
-  .mock-badge.rising { background: #ffec99; color: #5c4200; }
-  .mock-badge.extra { background: #40c057; color: #08260f; }
-  .mock-region { font-size: 13.5px; font-weight: 600; color: #111; margin-bottom: 10px; }
-  .mock-tags { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 5px; margin-top: auto; min-width: 0; }
-  .mock-tag { background: #a5d8ff; border: 1.5px solid #1e1e1e; border-radius: 9px; padding: 8px 5px; text-align: center; font-size: 10.5px; font-weight: 600; color: #0b2e4d; line-height: 1.2; display: flex; align-items: center; justify-content: center; min-height: 48px; }
+  .mock-content { position: absolute; inset: 0; background: #0a0e18; overflow: hidden; }
+  .mock-screenshot { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
   .mock-hinge { height: 7px; background: #0f0f10; margin: 0 5px; }
   .mock-base { position: relative; height: 18px; margin: 0 -26px; background: linear-gradient(#dcdcde,#b9b9bc); border-radius: 0 0 12px 12px; box-shadow: 0 6px 14px -6px rgba(0,0,0,0.3); }
   .mock-base-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 7px; background: #a3a3a6; border-radius: 0 0 8px 8px; }
@@ -204,20 +194,14 @@
     .testimonials h2 { margin-bottom: 28px; }
     .chaos h2 { margin-bottom: 28px; }
 
-    /* laptop mockup: drop the fixed aspect-ratio/absolute layout so a single stacked
-       column of cards can grow the frame naturally instead of being clipped */
+    /* laptop mockup: the screenshot keeps filling the fixed 16/10.4 frame at
+       every breakpoint, just at a smaller overall size */
     .mock-frame { margin-top: 40px; max-width: 340px; }
     .ambient.a1 { width: 70px; height: 60px; top: -20px; right: -22px; }
     .ambient.a2 { width: 80px; height: 58px; bottom: -16px; left: -24px; }
     .ambient.a3 { display: none; }
     .mock-lid { padding: 10px 10px 8px; border-radius: 13px; }
-    .mock-screen { aspect-ratio: auto; border-radius: 4px; }
-    .mock-content { position: static; padding: 14px; }
-    .mock-grid { grid-template-columns: 1fr; gap: 10px; }
-    .mock-card-head img { height: 20px; max-width: 100px; }
-    .mock-badge { font-size: 12px; padding: 5px 12px; white-space: normal; }
-    .mock-region { font-size: 15px; }
-    .mock-tags { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .mock-screen { border-radius: 4px; }
     .mock-base { margin: 0 -18px; }
 
     /* persona interest pills: shrink so more sit per row instead of stacking tall */
@@ -300,56 +284,7 @@
             <div class="mock-screen">
               <div class="mock-notch"></div>
               <div class="mock-content">
-                <div class="mock-grid">
-                  <div class="mock-card">
-                    <div class="mock-card-head">
-                      <img src="assets/logo-mini-socgen.png" alt="Societe Generale">
-                      <span class="mock-badge high">High Activity</span>
-                    </div>
-                    <div class="mock-region">France 🇫🇷 G-SIB</div>
-                    <div class="mock-tags">
-                      <div class="mock-tag">Stablecoins</div>
-                      <div class="mock-tag">Tokenized Bonds</div>
-                      <div class="mock-tag">Tokenized Funds</div>
-                    </div>
-                  </div>
-                  <div class="mock-card">
-                    <div class="mock-card-head">
-                      <img src="assets/logo-mini-revolut.png" alt="Revolut">
-                      <span class="mock-badge rising">Rising Activity</span>
-                    </div>
-                    <div class="mock-region">UK 🇬🇧 Neobank</div>
-                    <div class="mock-tags">
-                      <div class="mock-tag">Stablecoins</div>
-                      <div class="mock-tag">Crypto Trading</div>
-                      <div class="mock-tag">Funds</div>
-                    </div>
-                  </div>
-                  <div class="mock-card">
-                    <div class="mock-card-head">
-                      <img src="assets/logo-mini-jpmorgan.png" alt="JP Morgan">
-                      <span class="mock-badge extra">Extra Activity</span>
-                    </div>
-                    <div class="mock-region">US 🇺🇸 G-SIB</div>
-                    <div class="mock-tags">
-                      <div class="mock-tag">Tokenized deposits</div>
-                      <div class="mock-tag">Institutional collateral</div>
-                      <div class="mock-tag">Settlement Infrastructure</div>
-                    </div>
-                  </div>
-                  <div class="mock-card">
-                    <div class="mock-card-head">
-                      <img src="assets/logo-mini-abnamro.png" alt="ABN AMRO">
-                      <span class="mock-badge high">High Activity</span>
-                    </div>
-                    <div class="mock-region">Netherlands 🇳🇱 D-SIB</div>
-                    <div class="mock-tags">
-                      <div class="mock-tag">Bond tokenization</div>
-                      <div class="mock-tag">Digital asset custody</div>
-                      <div class="mock-tag">Secondary market pilots</div>
-                    </div>
-                  </div>
-                </div>
+                <img src="assets/dashboard-screen.jpg" alt="Coinstruct Alpha banking taxonomy dashboard" class="mock-screenshot">
               </div>
             </div>
           </div>
