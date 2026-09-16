@@ -413,6 +413,15 @@
     </div>
   </section>
 
+  <!-- CONSORTIUMS -->
+  <section class="quadrant">
+    <div class="eyebrow center">Partnerships</div>
+    <h2 class="section-title">Understand strategic partnerships in Digital Assets</h2>
+    <div class="quadrant-embed" id="consortiumsEmbed" style="max-width:714px;aspect-ratio:880/490">
+      <iframe src="consortiums.html" title="Stablecoin Consortiums" loading="lazy" scrolling="no" style="width:880px;height:490px"></iframe>
+    </div>
+  </section>
+
   <!-- DATA CARDS -->
   <section class="data-section">
     <div class="eyebrow center">Coverage</div>
@@ -568,12 +577,19 @@
 
 <script>
   (function () {
-    var container = document.getElementById('quadrantEmbed');
-    if (!container) return;
-    var iframe = container.querySelector('iframe');
+    // auto-scales any live-HTML embed (.quadrant-embed) to fit its container,
+    // using the iframe's own inline width as the "natural" size to scale from
+    var embeds = Array.prototype.slice.call(document.querySelectorAll('.quadrant-embed'));
+    var pairs = embeds.map(function (container) {
+      var iframe = container.querySelector('iframe');
+      var naturalWidth = parseFloat(iframe.style.width) || iframe.offsetWidth;
+      return { container: container, iframe: iframe, naturalWidth: naturalWidth };
+    });
     function fit() {
-      var scale = container.clientWidth / 1020;
-      iframe.style.transform = 'scale(' + scale + ')';
+      pairs.forEach(function (p) {
+        var scale = p.container.clientWidth / p.naturalWidth;
+        p.iframe.style.transform = 'scale(' + scale + ')';
+      });
     }
     fit();
     window.addEventListener('resize', fit);
