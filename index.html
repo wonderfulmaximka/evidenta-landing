@@ -20,7 +20,7 @@
   .wrap { width: 100%; max-width: 1440px; margin: 0 auto; background: #fff; overflow: hidden; }
 
   /* NAV */
-  nav.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 64px; border-bottom: 1px solid #eee; gap: 16px; }
+  nav.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 64px; background: #f6f7fb; border-bottom: 1px solid #eee; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
   .brand-name { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 500; color: #111; letter-spacing: -0.02em; }
   .nav-links { display: flex; align-items: center; gap: 44px; }
@@ -29,13 +29,25 @@
   .btn-primary:hover { color: #fff; background: #1d4ed8; }
 
   /* HERO */
-  .hero { position: relative; padding: 96px 64px 64px; overflow: hidden; background: #fff; }
+  .hero { position: relative; padding: 72px 64px 64px; overflow: hidden; background: #fff; }
   .hero-bg { position: absolute; bottom: 0; left: 0; width: 100%; height: 340px; opacity: 0.14; pointer-events: none; }
-  .hero-title { position: relative; z-index: 1; text-align: center; }
-  .hero-title h1 { font-size: 64px; line-height: 1.12; font-weight: 700; letter-spacing: -0.03em; color: #111; margin: 0; }
-  .hero-title .accent { color: #3b82f6; }
 
-  .mock { position: relative; z-index: 1; max-width: 940px; margin: 56px auto 0; }
+  .hero-stage { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; }
+  .hero-heading { margin: 0; }
+  .hero-line1, .hero-line2 {
+    position: absolute; display: block; font-size: 52px; line-height: 1.1; font-weight: 700; letter-spacing: -0.03em; color: #111; max-width: 320px; z-index: 3;
+  }
+  .hero-line1 { top: 10px; left: 0; text-align: left; }
+  .hero-line2 { right: 0; bottom: 18px; text-align: right; color: #3b82f6; }
+
+  .mock-frame { position: relative; z-index: 2; max-width: 611px; margin: 190px auto 0; }
+  .ambient { position: absolute; border-radius: 26px; z-index: 1; }
+  .ambient.a1 { top: -34px; right: -38px; width: 118px; height: 100px; background: #b2f2bb; }
+  .ambient.a2 { bottom: -28px; left: -42px; width: 130px; height: 96px; background: #a5d8ff; }
+  .ambient.a3 { top: 58%; left: -70px; width: 50px; height: 50px; background: #ffec99; border-radius: 16px; transform: rotate(8deg); }
+
+  .mock { position: relative; z-index: 2; margin: 0; }
+  .hero-copy { position: relative; z-index: 1; max-width: 700px; margin: 48px auto 0; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; line-height: 1.65; color: #555; }
   .mock-lid { background: linear-gradient(155deg,#2b2b2d,#1a1a1c); border-radius: 16px; padding: 14px 14px 10px; box-shadow: 0 30px 60px -20px rgba(15,23,42,0.35); }
   .mock-screen { position: relative; background: #000; border-radius: 5px; overflow: hidden; aspect-ratio: 16/10.4; }
   .mock-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 12px; height: 6px; background: #0a0a0a; border-radius: 0 0 5px 5px; z-index: 2; }
@@ -142,7 +154,15 @@
   @media (max-width: 960px) {
     nav.site-nav, .hero, .testimonials, .chaos, .quadrant, .data-section, .product-section, .persona-section, .cta, footer.site-footer { padding-left: 28px; padding-right: 28px; }
     .nav-links { display: none; }
-    .hero-title h1 { font-size: 40px; }
+
+    /* hero: the side-by-side headline + ambient shapes need real estate the
+       laptop doesn't have below desktop widths, so collapse to a stacked,
+       centered layout instead of shrinking everything proportionally */
+    .hero-line1, .hero-line2 { position: static; display: block; max-width: none; text-align: center; font-size: 40px; }
+    .hero-line1 { margin-bottom: 2px; }
+    .mock-frame { margin: 36px auto 0; max-width: 460px; }
+    .ambient.a3 { display: none; }
+
     .testimonial-grid, .data-grid, .product-grid { grid-template-columns: 1fr; }
     .persona-grid { grid-template-columns: repeat(2,1fr); }
     .chaos h2, .cta h2 { font-size: 32px; }
@@ -165,7 +185,9 @@
 
     /* laptop mockup: drop the fixed aspect-ratio/absolute layout so a single stacked
        column of cards can grow the frame naturally instead of being clipped */
-    .mock { margin-top: 36px; }
+    .mock-frame { margin-top: 28px; max-width: 340px; }
+    .ambient.a1 { width: 70px; height: 60px; top: -20px; right: -22px; }
+    .ambient.a2 { width: 80px; height: 58px; bottom: -16px; left: -24px; }
     .mock-lid { padding: 10px 10px 8px; border-radius: 13px; }
     .mock-screen { aspect-ratio: auto; border-radius: 4px; }
     .mock-content { position: static; padding: 14px; }
@@ -201,7 +223,8 @@
     .brand-name { font-size: 18px; }
     .btn-primary { padding: 10px 16px; font-size: 13px; }
     .hero, .testimonials, .chaos, .quadrant, .data-section, .product-section, .persona-section, .cta, footer.site-footer { padding-left: 20px; padding-right: 20px; }
-    .hero-title h1 { font-size: 32px; }
+    .hero-line1, .hero-line2 { font-size: 32px; }
+    .hero-copy { font-size: 15.5px; }
     .chaos h2 { font-size: 26px; }
     h2.section-title, .data-section h2, .product-section h2, .persona-section h2 { font-size: 24px; }
     .persona-grid { grid-template-columns: 1fr 1fr; }
@@ -242,11 +265,17 @@
         <rect x="1390" y="190" width="85" height="150"></rect><rect x="1620" y="160" width="75" height="180"></rect><rect x="1840" y="180" width="80" height="160"></rect>
       </g>
     </svg>
-    <div class="hero-title">
-      <h1>Digital Assets intelligence<br><span class="accent">built to make decisions</span></h1>
-    </div>
+    <div class="hero-stage">
+      <h1 class="hero-heading">
+        <span class="hero-line1">Digital Assets<br>intelligence</span>
+        <span class="hero-line2">build to<br>make decisions</span>
+      </h1>
 
-    <div class="mock">
+      <div class="mock-frame">
+        <span class="ambient a1"></span>
+        <span class="ambient a2"></span>
+        <span class="ambient a3"></span>
+        <div class="mock">
       <div class="mock-lid">
         <div class="mock-screen">
           <div class="mock-notch"></div>
@@ -308,6 +337,10 @@
       <div class="mock-base">
         <div class="mock-base-notch"></div>
       </div>
+        </div>
+      </div>
+
+      <p class="hero-copy">We track 250+ tokenization initiatives launched by banks globally, with granular data on each: licensing &amp; legal wrappers, chains &amp; token standards, service providers (custodians, auditors, tech vendors), and distribution &amp; DeFi integrations.</p>
     </div>
   </section>
 
