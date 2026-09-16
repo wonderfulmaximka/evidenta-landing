@@ -6,9 +6,7 @@
 <title>Evidenta — Digital Assets intelligence built to make decisions</title>
 <meta name="description" content="Evidenta tracks what banks and financial institutions are launching in digital assets — products, partnerships, investments and the people behind them.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.2.5/latin.css">
 <style>
   :root {
     color-scheme: light;
@@ -17,19 +15,23 @@
     --ink-faint: #8a8d94;
     --line: #e6e6ea;
     --bg: #ffffff;
-    --bg-alt: #fafafa;
+    --bg-alt: #eaf2fe;
     --accent: #2563eb;
     --accent-bright: #3b82f6;
     --accent-soft: rgba(59,130,246,0.09);
   }
   * { box-sizing: border-box; }
-  body { margin: 0; padding-top: 94px; background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; padding-top: 94px; background: var(--bg); color: var(--ink); font-family: 'Geist Sans', sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { color: #1d4ed8; }
   img { max-width: 100%; }
-  p { font-family: 'Inter', sans-serif; }
+  p { font-family: 'Geist Sans', sans-serif; }
 
-  .wrap { width: 100%; max-width: 1440px; margin: 0 auto; background: var(--bg); overflow: hidden; }
+  /* full-bleed: no max-width here (that used to cap section backgrounds —
+     chaos/product/cta — at 1440px on wide screens, same bug the nav had).
+     overflow-x stays as the safety net against decorative absolutely
+     positioned elements (ambient blobs, chaos pills) causing scroll. */
+  .wrap { width: 100%; background: var(--bg); overflow-x: hidden; }
 
   /* NAV — fixed full-bleed bar; its inner content stays aligned to the same
      1440px column as the rest of the page. Body gets padding-top equal to
@@ -38,7 +40,7 @@
   nav.site-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: var(--bg-alt); border-bottom: 1px solid var(--line); }
   .nav-inner { max-width: 1440px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 26px 64px; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-  .brand-name { font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 500; color: var(--ink); letter-spacing: -0.02em; }
+  .brand-name { font-family: 'Geist Sans', sans-serif; font-size: 21px; font-weight: 500; color: var(--ink); letter-spacing: -0.02em; }
   .nav-links { display: flex; align-items: center; gap: 40px; }
   .nav-links a { font-size: 14.5px; font-weight: 500; color: var(--ink-soft); }
   .nav-links a:hover { color: var(--ink); }
@@ -91,7 +93,7 @@
   .testimonials { padding: 80px 64px; background: var(--bg); text-align: center; }
   .testimonials h2 { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 40px; text-align: center; color: var(--ink); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
   .testimonials h2 .brand-inline { display: inline-flex; align-items: center; gap: 6px; }
-  .testimonials h2 .brand-inline span { font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
+  .testimonials h2 .brand-inline span { font-family: 'Geist Sans', sans-serif; font-weight: 500; }
   .testimonial-grid { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: left; }
   .testimonial-card { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 36px; display: flex; flex-direction: column; }
   .testimonial-source { font-size: 15px; font-weight: 600; margin-bottom: 20px; }
@@ -173,7 +175,7 @@
   /* FOOTER */
   footer.site-footer { padding: 32px 64px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   .footer-brand { display: flex; align-items: center; gap: 10px; }
-  .footer-brand span { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 500; color: var(--ink); }
+  .footer-brand span { font-family: 'Geist Sans', sans-serif; font-size: 15px; font-weight: 500; color: var(--ink); }
   .footer-copy { font-size: 13px; color: var(--ink-faint); }
 
   /* RESPONSIVE */
