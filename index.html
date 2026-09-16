@@ -60,6 +60,7 @@
   .ambient.a3 { top: 58%; left: -70px; width: 50px; height: 50px; background: #ffec99; border-radius: 16px; transform: rotate(8deg); }
 
   .mock { position: relative; z-index: 1; margin: 0; }
+  .hero-cta { display: inline-block; margin-top: 40px; font-size: 15px; padding: 13px 26px; border-radius: 9px; }
   .mock-lid { background: linear-gradient(155deg,#2b2b2d,#1a1a1c); border-radius: 16px; padding: 14px 14px 10px; box-shadow: 0 30px 60px -20px rgba(15,23,42,0.35); }
   .mock-screen { position: relative; background: #000; border-radius: 5px; overflow: hidden; aspect-ratio: 16/10.4; }
   .mock-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 12px; height: 6px; background: #0a0a0a; border-radius: 0 0 5px 5px; z-index: 2; }
@@ -90,6 +91,12 @@
   .testimonial-grid { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: left; }
   .testimonial-card { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 36px; display: flex; flex-direction: column; }
   .testimonial-source { font-size: 15px; font-weight: 600; margin-bottom: 20px; }
+  .testimonial-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; min-height: 28px; }
+  .logo-seacoast { height: 26px; width: auto; }
+  .anniversary-badge { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 1; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: #148385; padding-left: 14px; border-left: 1px solid #cfe9ea; }
+  .anniversary-badge strong { font-size: 15px; font-weight: 800; }
+  .logo-db-mark { height: 24px; width: auto; }
+  .logo-db-name { font-size: 19px; font-weight: 500; color: #0018a8; font-family: Arial, Helvetica, sans-serif; }
   .testimonial-quote { font-size: 18px; line-height: 1.6; color: #222; margin: 0 0 24px; }
   .testimonial-person { display: flex; align-items: center; gap: 12px; margin-top: auto; }
   .testimonial-person img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
@@ -153,7 +160,9 @@
   .cta-rule { width: 56px; height: 4px; background: var(--accent); border-radius: 2px; margin: 24px auto 44px; }
   .cta-person { display: flex; flex-direction: column; align-items: center; gap: 18px; }
   .cta-person img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
-  .cta-name { font-size: 18px; font-weight: 600; color: var(--ink); }
+  .cta-name { font-size: 18px; font-weight: 600; color: var(--ink); display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .cta-linkedin { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #0a66c2; flex-shrink: 0; }
+  .cta-linkedin:hover { background: #084d92; }
   .cta-role { font-size: 14.5px; color: var(--ink-faint); }
   .cta a.btn-primary { margin-top: 8px; font-size: 16px; padding: 15px 28px; border-radius: 10px; }
 
@@ -251,7 +260,7 @@
       <a href="#">Research</a>
       <a href="#">Methodology</a>
     </div>
-    <a href="#demo" class="btn-primary">Book a Demo</a>
+    <a href="https://calendly.com/max-coinstruct/30min" target="_blank" rel="noopener" class="btn-primary">Book a Demo</a>
   </nav>
 
   <!-- HERO -->
@@ -340,6 +349,7 @@
           </div>
         </div>
       </div>
+      <a href="https://calendly.com/max-coinstruct/30min" target="_blank" rel="noopener" class="btn-primary hero-cta">Book a Demo</a>
     </div>
   </section>
 
@@ -355,7 +365,10 @@
     </h2>
     <div class="testimonial-grid">
       <div class="testimonial-card">
-        <div class="testimonial-source" style="color:#0a5c4a">SeacoastBank · 100 Years</div>
+        <div class="testimonial-logo">
+          <img src="assets/logo-seacoastbank.svg" alt="SeacoastBank" class="logo-seacoast">
+          <span class="anniversary-badge"><strong>100</strong>YEARS</span>
+        </div>
         <svg width="22" height="16" viewBox="0 0 24 18" fill="none" style="margin-bottom:14px"><path d="M0 18V9C0 4 3 0 8 0V4C6 4 4 6 4 9H8V18H0ZM14 18V9C14 4 17 0 22 0V4C20 4 18 6 18 9H22V18H14Z" fill="#3b82f6"></path></svg>
         <p class="testimonial-quote">Love the tool! Really gives you an overview of what is going on. Have to think it is an eye opener for banks that don't have a blockchain strategy in place.</p>
         <div class="testimonial-person">
@@ -367,7 +380,10 @@
         </div>
       </div>
       <div class="testimonial-card">
-        <div class="testimonial-source" style="color:#0018a8">Deutsche Bank</div>
+        <div class="testimonial-logo">
+          <img src="assets/logo-deutsche-bank-mark.svg" alt="" class="logo-db-mark">
+          <span class="logo-db-name">Deutsche Bank</span>
+        </div>
         <svg width="22" height="16" viewBox="0 0 24 18" fill="none" style="margin-bottom:14px"><path d="M0 18V9C0 4 3 0 8 0V4C6 4 4 6 4 9H8V18H0ZM14 18V9C14 4 17 0 22 0V4C20 4 18 6 18 9H22V18H14Z" fill="#3b82f6"></path></svg>
         <p class="testimonial-quote">I really liked it. I think it's super interesting. Very, very well done. How the platform shows every single graphic and the information. It's super, super complete.</p>
         <div class="testimonial-person">
@@ -542,10 +558,10 @@
     <div class="cta-person">
       <img src="assets/founder-maxim.jpg" alt="Maxim Krasnov">
       <div>
-        <div class="cta-name">Maxim Krasnov</div>
+        <div class="cta-name">Maxim Krasnov <a href="https://www.linkedin.com/in/maxim-krasnov-484574246/" target="_blank" rel="noopener" class="cta-linkedin" aria-label="Maxim Krasnov on LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"></path></svg></a></div>
         <div class="cta-role">Founder &amp; CEO</div>
       </div>
-      <a href="#" class="btn-primary">Book a Demo</a>
+      <a href="https://calendly.com/max-coinstruct/30min" target="_blank" rel="noopener" class="btn-primary">Book a Demo</a>
     </div>
   </section>
 
