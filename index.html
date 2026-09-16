@@ -23,7 +23,7 @@
     --accent-soft: rgba(59,130,246,0.09);
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; padding-top: 94px; background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { color: #1d4ed8; }
   img { max-width: 100%; }
@@ -31,8 +31,12 @@
 
   .wrap { width: 100%; max-width: 1440px; margin: 0 auto; background: var(--bg); overflow: hidden; }
 
-  /* NAV */
-  nav.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 64px; background: var(--bg-alt); border-bottom: 1px solid var(--line); gap: 16px; }
+  /* NAV — fixed full-bleed bar; its inner content stays aligned to the same
+     1440px column as the rest of the page. Body gets padding-top equal to
+     the bar's height (tuned per breakpoint below) since fixed positioning
+     takes it out of normal flow. */
+  nav.site-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: var(--bg-alt); border-bottom: 1px solid var(--line); }
+  .nav-inner { max-width: 1440px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 26px 64px; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .brand-name { font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 500; color: var(--ink); letter-spacing: -0.02em; }
   .nav-links { display: flex; align-items: center; gap: 40px; }
@@ -174,7 +178,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 960px) {
-    nav.site-nav, .hero, .testimonials, .chaos, .quadrant, .data-section, .product-section, .persona-section, .cta, footer.site-footer { padding-left: 28px; padding-right: 28px; }
+    .nav-inner, .hero, .testimonials, .chaos, .quadrant, .data-section, .product-section, .persona-section, .cta, footer.site-footer { padding-left: 28px; padding-right: 28px; }
     .nav-links { display: none; }
     .hero-heading { font-size: 42px; }
     .testimonial-grid, .data-grid, .product-grid { grid-template-columns: 1fr; }
@@ -191,7 +195,8 @@
     .testimonials, .chaos, .data-section, .product-section, .persona-section { padding-top: 56px; padding-bottom: 56px; }
     .quadrant { padding-bottom: 56px; }
     .cta { padding-top: 72px; padding-bottom: 72px; }
-    nav.site-nav { padding-top: 18px; padding-bottom: 18px; }
+    .nav-inner { padding-top: 18px; padding-bottom: 18px; }
+    body { padding-top: 78px; }
 
     h2.section-title, .data-section h2, .product-section h2, .persona-section h2 { margin-bottom: 28px; }
     .testimonials h2 { margin-bottom: 28px; }
@@ -231,7 +236,8 @@
     .p7 { bottom: 0%; left: 30%; }
   }
   @media (max-width: 480px) {
-    nav.site-nav { padding-left: 20px; padding-right: 20px; gap: 10px; }
+    .nav-inner { padding-left: 20px; padding-right: 20px; gap: 10px; }
+    body { padding-top: 73px; }
     .brand-name { font-size: 18px; }
     .btn-primary { padding: 10px 16px; font-size: 13px; }
     .hero, .testimonials, .chaos, .quadrant, .data-section, .product-section, .persona-section, .cta, footer.site-footer { padding-left: 20px; padding-right: 20px; }
@@ -247,10 +253,9 @@
 </head>
 <body>
 
-<div class="wrap">
-
-  <!-- NAV -->
-  <nav class="site-nav">
+<!-- NAV — outside .wrap so it can span the full viewport width and stay fixed -->
+<nav class="site-nav">
+  <div class="nav-inner">
     <div class="brand">
       <svg width="30" height="30" viewBox="0 0 40 40" fill="none"><rect x="0" y="0" width="18" height="18" rx="3" fill="#3b82f6"></rect><rect x="22" y="0" width="18" height="18" rx="3" fill="#111" opacity="0.2"></rect><rect x="0" y="22" width="18" height="18" rx="3" fill="#111" opacity="0.1"></rect><rect x="22" y="22" width="18" height="18" rx="3" fill="#111" opacity="0.4"></rect></svg>
       <span class="brand-name">evidenta</span>
@@ -261,7 +266,10 @@
       <a href="#">Methodology</a>
     </div>
     <a href="https://calendly.com/max-coinstruct/30min" target="_blank" rel="noopener" class="btn-primary">Book a Demo</a>
-  </nav>
+  </div>
+</nav>
+
+<div class="wrap">
 
   <!-- HERO -->
   <section class="hero">
