@@ -55,7 +55,7 @@
   .hero { position: relative; padding: 88px 64px 72px; overflow: hidden; background: var(--bg); text-align: center; }
   .hero-bg { position: absolute; bottom: 0; left: 0; width: 100%; height: 340px; opacity: 0.10; pointer-events: none; }
   .hero-stage { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; }
-  .hero-heading { margin: 0; font-size: 66px; line-height: 1.06; font-weight: 800; letter-spacing: -0.035em; color: var(--ink); }
+  .hero-heading { margin: 0; font-size: 66px; line-height: 1.06; font-weight: 700; letter-spacing: -0.035em; color: var(--ink); }
   .hero-heading .accent-text { color: var(--accent); }
   .hero-copy { position: relative; z-index: 1; max-width: 640px; margin: 26px auto 0; text-align: center; font-size: 17px; line-height: 1.65; color: var(--ink-soft); }
 
@@ -87,11 +87,11 @@
   .mock-base-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 7px; background: #a3a3a6; border-radius: 0 0 8px 8px; }
 
   /* SECTION HEADINGS */
-  h2.section-title { font-size: 42px; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 40px; max-width: 780px; text-align: center; margin-left: auto; margin-right: auto; color: var(--ink); }
+  h2.section-title { font-size: 42px; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 40px; max-width: 780px; text-align: center; margin-left: auto; margin-right: auto; color: var(--ink); }
 
   /* TESTIMONIALS */
   .testimonials { padding: 80px 64px; background: var(--bg); text-align: center; }
-  .testimonials h2 { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 40px; text-align: center; color: var(--ink); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .testimonials h2 { font-size: 38px; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 40px; text-align: center; color: var(--ink); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
   .testimonials h2 .brand-inline { display: inline-flex; align-items: center; gap: 6px; }
   .testimonials h2 .brand-inline span { font-family: 'Geist Sans', sans-serif; font-weight: 500; }
   .testimonial-grid { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: left; }
@@ -111,7 +111,7 @@
 
   /* CHAOS */
   .chaos { padding: 96px 64px; text-align: center; background: var(--bg-alt); }
-  .chaos h2 { font-size: 46px; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 44px; color: var(--ink); }
+  .chaos h2 { font-size: 46px; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 44px; color: var(--ink); }
   .chaos-diagram { position: relative; max-width: 720px; height: 420px; margin: 0 auto; }
   .chaos-core { position: absolute; top: 50%; left: 50%; width: 170px; height: 170px; transform: translate(-50%,-50%); border-radius: 50%; background: radial-gradient(circle at 32% 30%,#93c5fd,var(--accent-bright) 55%,#1d4ed8 100%); box-shadow: 0 30px 60px -20px rgba(59,130,246,0.5); }
   .chaos-ring { position: absolute; top: 50%; left: 50%; width: 320px; height: 320px; transform: translate(-50%,-50%); border-radius: 50%; border: 1px dashed #dbeafe; }
@@ -128,7 +128,7 @@
   /* QUADRANT — live HTML embed (crisper than a screenshot), rendered at its
      natural size (1020x906) and scaled down 30% via JS to fit the container,
      rather than pre-rasterizing to a fixed-resolution image */
-  .quadrant { padding: 0 64px 96px; text-align: center; }
+  .quadrant { padding: 72px 64px 96px; text-align: center; }
   .quadrant-embed { position: relative; width: 100%; max-width: 714px; margin: 0 auto; aspect-ratio: 1020 / 906; overflow: hidden; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 4px 24px rgba(0,0,0,0.05); background: #fff; }
   .quadrant-embed iframe { position: absolute; top: 0; left: 0; width: 1020px; height: 906px; border: 0; transform-origin: top left; pointer-events: none; }
 
@@ -162,7 +162,7 @@
 
   /* CTA */
   .cta { padding: 112px 64px; text-align: center; background: var(--bg-alt); }
-  .cta h2 { font-size: 48px; font-weight: 800; letter-spacing: -0.03em; margin: 0; color: var(--ink); }
+  .cta h2 { font-size: 48px; font-weight: 700; letter-spacing: -0.03em; margin: 0; color: var(--ink); }
   .cta-rule { width: 56px; height: 4px; background: var(--accent); border-radius: 2px; margin: 24px auto 44px; }
   .cta-person { display: flex; flex-direction: column; align-items: center; gap: 18px; }
   .cta-person img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
@@ -195,7 +195,7 @@
     /* tighten vertical rhythm so sections don't leave huge dead gaps on phones */
     .hero { padding-top: 64px; padding-bottom: 40px; }
     .testimonials, .chaos, .data-section, .product-section, .persona-section { padding-top: 56px; padding-bottom: 56px; }
-    .quadrant { padding-bottom: 56px; }
+    .quadrant { padding-top: 56px; padding-bottom: 56px; }
     .cta { padding-top: 72px; padding-bottom: 72px; }
     .nav-inner { padding-top: 18px; padding-bottom: 18px; }
     body { padding-top: 78px; }
