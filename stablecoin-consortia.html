@@ -67,37 +67,15 @@
   .lead-status { font-size: 13px; color: var(--accent); min-height: 18px; }
   .lead-status.error { color: #ffb4b4; }
 
-  .map-card { background: #fff; border-radius: 20px; padding: 24px; flex-shrink: 0; }
-  .map-inner { display: flex; flex-direction: column; gap: 14px; width: 761px; max-width: 100%; }
-  .chart-scale-wrap { width: 100%; }
-  .chart-frame {
-    position: relative; width: 761px; height: 465px; background: #fafbfc;
-    border: 1.5px solid var(--line-navy); border-radius: 12px; transform-origin: top left;
-  }
-  .chart-divider { position: absolute; left: 365.85px; top: -1.5px; width: 1.5px; height: 468px; background: var(--line-navy); }
-  .chart-col-label { position: absolute; top: 17px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11px; color: #185fa5; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.25; }
-  .chart-col-label.left { left: 22px; }
-  .chart-col-label.right { right: 15px; text-align: right; }
-  .chart-axis-line { position: absolute; left: 15px; top: 469px; width: 350px; height: 1.5px; background: var(--line-navy); }
-  .chart-axis-arrow { position: absolute; left: 357px; top: 464px; width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 8px solid var(--line-navy); }
-  .chart-axis-caption { position: absolute; left: 22px; top: 447px; font-size: 10.5px; font-style: italic; font-weight: 600; color: #2c2c2a; }
-
-  .entity { position: absolute; }
-  .entity .dot { position: absolute; width: 20px; height: 20px; border-radius: 50%; border: 1.3px solid var(--line-navy); }
-  .entity .dot.green { background: #b7e8c0; }
-  .entity .dot.blue { background: #b5d4f4; }
-  .entity .dot.yellow { background: #f7e093; }
-  .entity .name { position: absolute; background: #fff; border-radius: 4px; padding: 1px 5px; font-size: 10.5px; font-weight: 600; color: var(--line-navy); white-space: nowrap; }
-  .entity .note { position: absolute; background: #f4f8fd; border-radius: 3px; padding: 1px 5px; font-size: 8.5px; font-weight: 500; color: #5f5e5a; white-space: nowrap; }
-  .entity .logos { position: absolute; display: flex; gap: 2.4px; }
-  .entity .logo { width: 17px; height: 17px; border-radius: 4px; background: #f4f8fd; border: 1px solid var(--line-navy); display: flex; align-items: center; justify-content: center; font-size: 5.5px; font-weight: 600; color: var(--line-navy); text-align: center; line-height: 1; }
-
-  .legend { display: flex; gap: 24px; align-items: center; justify-content: center; width: 100%; padding-top: 4px; flex-wrap: wrap; }
-  .legend-item { display: flex; gap: 7px; align-items: center; font-size: 11px; font-weight: 600; color: var(--line-navy); }
-  .legend-dot { width: 15px; height: 15px; border-radius: 50%; border: 1.3px solid var(--line-navy); }
-  .legend-dot.green { background: #b7e8c0; }
-  .legend-dot.blue { background: #b5d4f4; }
-  .legend-dot.yellow { background: #f7e093; }
+  /* Quadrant map embed — same footprint the old hand-built chart card used
+     (761px chart + 24px padding each side = 809px), now filled by the
+     standalone stablecoin-quadrant.html map via a scaled iframe. The embed's
+     natural size (980x787) is measured from that file; we scale it down to
+     fit this card's width and scale the wrapper height to match, same
+     technique as index.html's .quadrant-embed fit script. */
+  .map-card-embed { width: 100%; max-width: 809px; flex-shrink: 0; border-radius: 20px; overflow: hidden; background: #fff; }
+  .quadrant-scale-wrap { width: 100%; overflow: hidden; }
+  #quadrantFrame { width: 980px; height: 787px; border: none; display: block; transform-origin: top left; }
 
   /* WHAT'S IN THIS RESEARCH */
   .features { padding: 88px 64px 96px; display: flex; flex-direction: column; gap: 40px; }
@@ -112,8 +90,7 @@
   @media (max-width: 980px) {
     .top { padding: 20px 28px 48px; }
     .hero { flex-direction: column; gap: 40px; }
-    .map-card { width: 100%; }
-    .map-inner { width: 100%; }
+    .map-card-embed { max-width: 100%; }
     .features { padding: 64px 28px; }
     .features-row { flex-direction: column; }
     .hero-left h1 { font-size: 36px; }
@@ -151,108 +128,9 @@
         </form>
       </div>
 
-      <div class="map-card">
-        <div class="map-inner">
-          <div class="chart-scale-wrap" id="chartScaleWrap">
-            <div class="chart-frame" id="chartFrame">
-              <div class="chart-divider"></div>
-              <div class="chart-col-label left">Announced<br>&amp; Building</div>
-              <div class="chart-col-label right">Live</div>
-              <div class="chart-axis-line"></div>
-              <div class="chart-axis-arrow"></div>
-              <div class="chart-axis-caption">Expected launch date</div>
-
-              <!-- Announced & Building (green) -->
-              <div class="entity" style="left:210px;top:140px;">
-                <div class="dot green"></div>
-                <div class="name" style="left:27px;top:2px;">Qivalis (EUR)</div>
-                <div class="logos" style="left:27px;top:21px;">
-                  <div class="logo">BNP</div><div class="logo">BPCE</div><div class="logo">ING</div>
-                </div>
-              </div>
-
-              <div class="entity" style="left:63px;top:194px;">
-                <div class="dot green"></div>
-                <div class="name" style="left:27px;top:2px;">21 global bank group</div>
-                <div class="note" style="left:27px;top:21px;">Not named yet</div>
-                <div class="logos" style="left:27px;top:35px;">
-                  <div class="logo">BoA</div><div class="logo">MUFG</div><div class="logo">Citi</div>
-                </div>
-              </div>
-
-              <div class="entity" style="left:174px;top:263px;">
-                <div class="dot green"></div>
-                <div class="name" style="left:27px;top:2px;">Zelle ZLUSD</div>
-                <div class="logos" style="left:27px;top:21px;">
-                  <div class="logo">JPM</div><div class="logo">BoA</div><div class="logo">WF</div>
-                </div>
-              </div>
-
-              <div class="entity" style="left:120px;top:305px;">
-                <div class="dot green"></div>
-                <div class="name" style="left:27px;top:2px;">Japan megabanks (yen)</div>
-                <div class="logos" style="left:27px;top:21px;">
-                  <div class="logo">MUFG</div><div class="logo">SMBC</div><div class="logo">MZ</div>
-                </div>
-              </div>
-
-              <div class="entity" style="left:39px;top:378px;">
-                <div class="dot green"></div>
-                <div class="name" style="left:27px;top:2px;">Swiss CHF sandbox</div>
-                <div class="logos" style="left:27px;top:21px;">
-                  <div class="logo">UBS</div><div class="logo">R</div><div class="logo">ZKB</div>
-                </div>
-              </div>
-
-              <!-- Live (blue = network-economics) -->
-              <div class="entity" style="left:540px;top:114px;">
-                <div class="dot blue"></div>
-                <div class="name" style="left:27px;top:2px;">Open USD (OUSD)</div>
-                <div class="logos" style="left:27px;top:21px;">
-                  <div class="logo">BLK</div><div class="logo">VISA</div><div class="logo">MA</div>
-                </div>
-              </div>
-
-              <div class="entity" style="left:500px;top:200px;">
-                <div class="dot blue"></div>
-                <div class="name" style="left:27px;top:2px;">Global Dollar Network (USDG)</div>
-                <div class="logos" style="left:27px;top:21px;">
-                  <div class="logo">MA</div><div class="logo">DBS</div><div class="logo">RH</div>
-                </div>
-              </div>
-
-              <!-- Live (yellow = joint ventures) -->
-              <div class="entity" style="left:443px;top:279px;">
-                <div class="dot yellow"></div>
-                <div class="name" style="left:27px;top:2px;">AllUnity (EURAU)</div>
-                <div class="logos" style="left:27px;top:21px;">
-                  <div class="logo">DWS</div><div class="logo">GLX</div><div class="logo">FT</div>
-                </div>
-              </div>
-
-              <div class="entity" style="left:547px;top:339px;">
-                <div class="dot yellow"></div>
-                <div class="name" style="left:27px;top:2px;">Anchorpoint (HKDAP)</div>
-                <div class="logos" style="left:27px;top:21px;">
-                  <div class="logo">SC</div><div class="logo">HKT</div><div class="logo">AB</div>
-                </div>
-              </div>
-
-              <div class="entity" style="left:422px;top:397px;">
-                <div class="dot yellow"></div>
-                <div class="name" style="left:27px;top:2px;">DDSC (UAE dirham)</div>
-                <div class="logos" style="left:27px;top:21px;">
-                  <div class="logo">IHC</div><div class="logo">ADQ</div><div class="logo">FAB</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="legend">
-            <div class="legend-item"><span class="legend-dot blue"></span>Network-economics</div>
-            <div class="legend-item"><span class="legend-dot green"></span>Bank-owned issuer</div>
-            <div class="legend-item"><span class="legend-dot yellow"></span>Joint ventures</div>
-          </div>
+      <div class="map-card-embed" id="quadrantEmbed">
+        <div class="quadrant-scale-wrap" id="quadrantScaleWrap">
+          <iframe id="quadrantFrame" src="stablecoin-quadrant.html" scrolling="no" title="Stablecoin Consortium Map"></iframe>
         </div>
       </div>
     </div>
@@ -287,13 +165,14 @@
 
   <script>
     (function () {
-      var frame = document.getElementById('chartFrame');
-      var wrap = document.getElementById('chartScaleWrap');
-      var natural = 761;
+      var frame = document.getElementById('quadrantFrame');
+      var wrap = document.getElementById('quadrantScaleWrap');
+      var naturalWidth = 980;
+      var naturalHeight = 787;
       function fit() {
-        var scale = Math.min(1, wrap.clientWidth / natural);
+        var scale = wrap.clientWidth / naturalWidth;
         frame.style.transform = 'scale(' + scale + ')';
-        wrap.style.height = (465 * scale) + 'px';
+        wrap.style.height = (naturalHeight * scale) + 'px';
       }
       fit();
       window.addEventListener('resize', fit);
