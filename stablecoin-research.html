@@ -187,6 +187,75 @@
   .closing-banner p { font-size: 34px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; color: #fff; flex: 1 1 0; }
   .closing-banner p em { font-style: normal; color: var(--accent); }
 
+  /* ===== DATA COVERAGE + INSIGHTS (shared mini-dashboard components) ===== */
+  .highlight-title { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 40px; letter-spacing: -0.02em; color: #262626; }
+  .highlight-title .chip-highlight { background: #3b82f6; color: #fff; font-weight: 600; padding: 2px 14px; }
+  .coverage-top { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
+  .coverage-sub { font-size: 17px; line-height: 1.5; color: #595959; max-width: 520px; }
+  .coverage-stats { display: flex; align-items: center; gap: 0; background: #fff; border-radius: 15px; box-shadow: -4px 6px 20px rgba(0,0,0,0.06); padding: 20px 0; }
+  .coverage-stats .stat { display: flex; flex-direction: column; align-items: center; padding: 0 28px; }
+  .coverage-stats .stat .num { font-size: 40px; font-weight: 600; letter-spacing: -0.02em; color: #3b82f6; }
+  .coverage-stats .stat .label { font-size: 15px; color: #7f7f7f; }
+  .coverage-stats .divider-v { width: 1px; height: 56px; background: #3b82f6; }
+
+  .org-card { background: #fff; border: 1px solid #d9d9d9; border-radius: 18px; box-shadow: -4px 6px 20px rgba(0,0,0,0.06); padding: 20px; }
+  .org-head { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 20px; }
+  .org-logo-tile { width: 56px; height: 56px; border-radius: 12px; background: #f8f9fb; border: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .org-logo-tile img { width: 32px; height: 32px; object-fit: contain; }
+  .org-name-block { margin-right: auto; }
+  .org-name-block .org-name { font-size: 24px; font-weight: 700; color: #111; }
+  .org-name-block .org-sub { font-size: 14px; color: #7f7f7f; }
+  .org-fact { background: #f8f9fb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 10px 14px; min-width: 180px; }
+  .org-fact .fact-label { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; color: #9aa0aa; text-transform: uppercase; }
+  .org-fact .fact-value { font-size: 15px; color: #111; }
+
+  .insight-modules { display: flex; gap: 16px; flex-wrap: wrap; }
+  .insight-module { flex: 1 1 280px; min-width: 280px; background: #f8f9fb; border: 1px solid #e5e7eb; border-radius: 13px; padding: 14px; }
+  .insight-module .mod-label { font-size: 12px; font-weight: 700; letter-spacing: 0.07em; color: #6c36fe; }
+  .insight-module .mod-title { font-size: 14px; font-weight: 700; color: #262626; margin-top: 6px; margin-bottom: 12px; }
+  .insight-panel { background: #fff; border: 1px solid #e5e7eb; border-radius: 9px; position: relative; height: 190px; overflow: hidden; }
+
+  /* benchmarking quadrant */
+  .bench-quadrant { width: 100%; height: 100%; position: relative; font-size: 8px; }
+  .bench-quadrant .axis-v { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #e5e7eb; }
+  .bench-quadrant .axis-h { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #e5e7eb; }
+  .bench-quadrant .q-label { position: absolute; font-weight: 700; letter-spacing: 0.06em; font-size: 7.5px; }
+  .bench-quadrant .q-label.pilots { left: 6px; top: 5px; color: #c2540a; }
+  .bench-quadrant .q-label.active { right: 6px; top: 5px; color: #0a9b55; }
+  .bench-quadrant .q-label.low { left: 6px; bottom: 5px; color: #8b93a0; }
+  .bench-quadrant .q-label.announce { right: 6px; bottom: 5px; color: #3b6fe0; }
+  .bench-quadrant .peer { position: absolute; width: 22px; height: 22px; border-radius: 6px; background: #fff; border: 1px solid #c9ced6; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 700; color: #4b5563; }
+  .bench-quadrant .peer img { width: 16px; height: 16px; object-fit: contain; }
+  .bench-quadrant .peer-label { position: absolute; font-size: 7.5px; font-weight: 700; color: #4b5563; white-space: nowrap; }
+  .bench-quadrant .focal { position: absolute; width: 26px; height: 26px; border-radius: 7px; background: #fff; border: 2px solid #bde3ff; box-shadow: 0 4px 5px rgba(59,130,246,0.35); display: flex; align-items: center; justify-content: center; }
+  .bench-quadrant .focal img { width: 18px; height: 18px; object-fit: contain; }
+
+  /* partnerships grid */
+  .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; height: 100%; padding: 2px; }
+  .partner-org { background: #fff; border: 1px solid #e5e7eb; border-radius: 9px; box-shadow: 0 2px 3px rgba(0,0,0,0.05); padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+  .partner-org .p-name { font-size: 13px; font-weight: 700; color: #111; }
+  .partner-org .p-role { display: inline-block; background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 6px; padding: 3px 7px; font-size: 9.5px; color: #4b5563; align-self: flex-start; }
+
+  .insight-network img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+  /* product timeline */
+  .timeline-panel { padding: 10px 10px 0; }
+  .timeline-events { display: flex; flex-direction: column; gap: 9px; padding-left: 18px; position: relative; }
+  .timeline-events::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 18px; width: 1px; background: #e5e7eb; }
+  .timeline-event { position: relative; }
+  .timeline-event::before { content: ""; position: absolute; left: -18px; top: 3px; width: 7px; height: 7px; border-radius: 50%; background: #f0b45a; border: 1.5px solid #fff; box-shadow: 0 0 0 1px #f0b45a; }
+  .timeline-event .t-title { font-size: 10.5px; font-weight: 700; color: #111; line-height: 1.3; }
+  .timeline-event .t-meta { font-size: 9px; color: #8b93a0; }
+  .timeline-months { display: flex; justify-content: space-between; border-top: 1px solid #d9d9d9; padding: 6px 0 0 18px; font-size: 9px; color: #8b93a0; }
+  .timeline-months .cur { color: #262626; font-weight: 700; }
+
+  @media (max-width: 980px) {
+    .coverage-top { flex-direction: column; align-items: flex-start; }
+    .org-head { flex-direction: column; align-items: flex-start; }
+    .org-fact { width: 100%; }
+    .highlight-title { font-size: 30px; }
+  }
+
   /* ===== DEMO CTA (shared pattern) ===== */
   .demo-cta { text-align: center; padding: 96px 64px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
   .demo-cta .brand-row { display: flex; align-items: center; gap: 12px; }
@@ -511,6 +580,153 @@
     <div class="closing-banner">
       <img src="assets/stablecoin-research/seat-rings.svg" alt="">
       <p>Most institutions will end up in <em>more than one seat.</em></p>
+    </div>
+  </section>
+
+  <!-- DATA COVERAGE -->
+  <section class="bg-tint">
+    <div class="coverage-top">
+      <div>
+        <p class="highlight-title">All data here from <span class="chip-highlight">EVIDENTA</span></p>
+        <p class="coverage-sub" style="margin-top:16px;">Evidenta provides data on digital asset programs launched by banks &amp; FIs across the globe.</p>
+      </div>
+      <div class="coverage-stats">
+        <div class="stat"><span class="num">289</span><span class="label">financial institutions</span></div>
+        <div class="divider-v"></div>
+        <div class="stat"><span class="num">440</span><span class="label">initiatives covered</span></div>
+      </div>
+    </div>
+
+    <div class="org-card">
+      <div class="org-head">
+        <div class="org-logo-tile"><img src="assets/stablecoin-research/abn-amro-logo.png" alt="ABN AMRO"></div>
+        <div class="org-name-block"><div class="org-name">ABN AMRO</div><div class="org-sub">Bank &middot; Netherlands</div></div>
+        <div class="org-fact"><div class="fact-label">Registered in</div><div class="fact-value">Netherlands</div></div>
+        <div class="org-fact"><div class="fact-label">Business model</div><div class="fact-value">Universal Bank</div></div>
+        <div class="org-fact"><div class="fact-label">Scale</div><div class="fact-value">&euro;413.2B total assets</div></div>
+      </div>
+
+      <div class="insight-modules">
+        <div class="insight-module">
+          <p class="mod-label">BENCHMARKING</p>
+          <p class="mod-title">ABN AMRO among Netherlands peers</p>
+          <div class="insight-panel">
+            <div class="bench-quadrant">
+              <div class="axis-v"></div><div class="axis-h"></div>
+              <span class="q-label pilots">PILOTS</span>
+              <span class="q-label active">ACTIVE ADOPTION</span>
+              <span class="q-label low">NO-TO-LOW ACTIVITY</span>
+              <span class="q-label announce">ANNOUNCEMENTS</span>
+              <div class="peer" style="left:14%;top:62%;">APG</div>
+              <div class="peer" style="left:14%;top:82%;">PGGM</div>
+              <div class="peer" style="left:32%;top:20%;"><img src="assets/stablecoin-research/peer-ing.svg" alt=""></div>
+              <span class="peer-label" style="left:30%;top:42%;">bunq</span>
+              <div class="peer" style="left:24%;top:58%;"></div>
+              <span class="peer-label" style="left:42%;top:72%;">Rabobank</span>
+              <div class="peer" style="left:48%;top:58%;"></div>
+              <span class="peer-label" style="left:55%;top:28%;">ING</span>
+              <span class="peer-label" style="left:63%;top:38%;">ABN</span>
+              <div class="focal" style="left:62%;top:22%;"><img src="assets/stablecoin-research/abn-amro-logo.png" alt=""></div>
+              <span class="peer-label" style="left:60%;top:88%;">Amdax</span>
+              <div class="peer" style="left:58%;top:78%;"></div>
+              <span class="peer-label" style="left:68%;top:54%;">Euronext</span>
+              <div class="peer" style="left:66%;top:44%;"></div>
+              <div class="peer" style="left:72%;top:28%;"><img src="assets/stablecoin-research/peer-bitvavo.svg" alt=""></div>
+              <span class="peer-label" style="left:85%;top:36%;">Bitvavo</span>
+              <span class="peer-label" style="left:70%;top:62%;">Flow Traders</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="insight-module">
+          <p class="mod-label">PARTNERSHIPS &amp; VENDORS</p>
+          <p class="mod-title">Relations with partners and vendors</p>
+          <div class="insight-panel">
+            <div class="partner-grid">
+              <div class="partner-org"><div class="p-name">Fireblocks</div><div class="p-role">Core Infrastructure Provider</div></div>
+              <div class="partner-org"><div class="p-name">Rabobank</div><div class="p-role">Collateral Provider</div></div>
+              <div class="partner-org"><div class="p-name">Assetblocks</div><div class="p-role">Tokenization Provider</div></div>
+              <div class="partner-org"><div class="p-name">Bitbond</div><div class="p-role">Smart Contract Provider</div></div>
+              <div class="partner-org"><div class="p-name">Project Pyctor</div><div class="p-role">Sandbox Project</div></div>
+              <div class="partner-org"><div class="p-name">Qivalis B.V.</div><div class="p-role">Consortium Operator</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="insight-module">
+          <p class="mod-label">PRODUCT DATA</p>
+          <p class="mod-title">Timeline of development</p>
+          <div class="insight-panel timeline-panel">
+            <div class="timeline-events">
+              <div class="timeline-event"><div class="t-title">ABN AMRO issued a tokenised commercial paper on&hellip;</div><div class="t-meta">Oct 2024 &middot; ABN AMRO</div></div>
+              <div class="timeline-event"><div class="t-title">Ledger Insights reported that ABN AMRO and&hellip;</div><div class="t-meta">7 Oct 2024 &middot; Ledger Insights</div></div>
+              <div class="timeline-event"><div class="t-title">Clifford Chance announced that it had advised ABN&hellip;</div><div class="t-meta">9 Oct 2024 &middot; Clifford Chance</div></div>
+              <div class="timeline-event"><div class="t-title">ABN AMRO began four repo trades using the&hellip;</div><div class="t-meta">22 Oct 2024 &middot; Clearstream</div></div>
+            </div>
+            <div class="timeline-months"><span>Oct 2024</span><span>Nov</span><span>Dec</span><span class="cur">2025</span><span>Feb</span><span>Mar</span><span>Apr</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT INSIGHTS DO WE DISPLAY -->
+  <section>
+    <p style="font-size:17px;color:#595959;margin-bottom:8px;">The solution</p>
+    <p class="highlight-title" style="margin-bottom:40px;">What insights do we <span class="chip-highlight">display?</span></p>
+
+    <div class="insight-modules">
+      <div class="insight-module" style="background:#fff;">
+        <p class="mod-label">BENCHMARKING &amp; COMPETITION</p>
+        <p class="mod-title" style="font-size:15px;">See where any bank stands among its regional peers. Our sector maps position financial institutions by adoption maturity, so you can show a client exactly who is ahead and where the gaps are.</p>
+        <div class="insight-panel" style="height:230px;">
+          <div class="bench-quadrant">
+            <span class="q-label pilots">PILOTS</span>
+            <span class="q-label active">ACTIVE ADOPTION</span>
+            <span class="q-label low">NO-TO-LOW ACTIVITY</span>
+            <span class="q-label announce">ANNOUNCEMENTS</span>
+            <div class="peer" style="left:14%;top:62%;">APG</div>
+            <div class="peer" style="left:14%;top:82%;">PGGM</div>
+            <div class="peer" style="left:32%;top:20%;"><img src="assets/stablecoin-research/peer-ing.svg" alt=""></div>
+            <span class="peer-label" style="left:30%;top:42%;">bunq</span>
+            <div class="peer" style="left:24%;top:58%;"></div>
+            <span class="peer-label" style="left:42%;top:72%;">Rabobank</span>
+            <div class="peer" style="left:48%;top:58%;"></div>
+            <span class="peer-label" style="left:55%;top:28%;">ING</span>
+            <span class="peer-label" style="left:63%;top:38%;">ABN</span>
+            <div class="focal" style="left:62%;top:22%;"><img src="assets/stablecoin-research/abn-amro-logo.png" alt=""></div>
+            <span class="peer-label" style="left:60%;top:88%;">Amdax</span>
+            <div class="peer" style="left:58%;top:78%;"></div>
+            <span class="peer-label" style="left:68%;top:54%;">Euronext</span>
+            <div class="peer" style="left:66%;top:44%;"></div>
+            <div class="peer" style="left:72%;top:28%;"><img src="assets/stablecoin-research/peer-bitvavo.svg" alt=""></div>
+            <span class="peer-label" style="left:85%;top:36%;">Bitvavo</span>
+            <span class="peer-label" style="left:70%;top:62%;">Flow Traders</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-module" style="background:#fff;">
+        <p class="mod-label">PARTNERSHIPS &amp; INVESTMENTS</p>
+        <p class="mod-title" style="font-size:15px;">See who a bank works with and how its ecosystem is structured. We map partners, clients, investors and consortium memberships.</p>
+        <div class="insight-panel insight-network" style="height:230px;">
+          <img src="assets/stablecoin-research/network-diagram-crop.png" alt="Partnership network diagram centered on ABN AMRO">
+        </div>
+      </div>
+
+      <div class="insight-module" style="background:#fff;">
+        <p class="mod-label">PRODUCT DATA</p>
+        <p class="mod-title" style="font-size:15px;">We capture the full anatomy of each digital asset product: token standard, custody setup, legal wrapper, fee structure, DeFi integrations and day-by-day deployment timeline.</p>
+        <div class="insight-panel timeline-panel" style="height:230px;">
+          <div class="timeline-events">
+            <div class="timeline-event"><div class="t-title">ABN AMRO issued a tokenised commercial paper on&hellip;</div><div class="t-meta">Oct 2024 &middot; ABN AMRO</div></div>
+            <div class="timeline-event"><div class="t-title">Ledger Insights reported that ABN AMRO and&hellip;</div><div class="t-meta">7 Oct 2024 &middot; Ledger Insights</div></div>
+            <div class="timeline-event"><div class="t-title">Clifford Chance announced that it had advised ABN&hellip;</div><div class="t-meta">9 Oct 2024 &middot; Clifford Chance</div></div>
+            <div class="timeline-event"><div class="t-title">ABN AMRO began four repo trades using the&hellip;</div><div class="t-meta">22 Oct 2024 &middot; Clearstream</div></div>
+          </div>
+          <div class="timeline-months"><span>Oct 2024</span><span>Nov</span><span>Dec</span><span class="cur">2025</span><span>Feb</span><span>Mar</span><span>Apr</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
