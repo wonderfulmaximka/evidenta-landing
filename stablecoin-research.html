@@ -3,23 +3,555 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stablecoin Consortium Research — Evidenta</title>
+<title>Who Owns the Dollar Token? — Evidenta</title>
+<meta name="description" content="The three business models behind stablecoin consortia: network economics, bank-owned issuers and licensed joint ventures.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --navy: #0b2447;
+    --navy-card: #12305e;
+    --navy-line: #2a4a7a;
+    --accent: #bcd7ff;
+    --accent-text: #2f6fdb;
+    --ink: #0b2447;
+    --ink-soft: #33476b;
+    --body-light: #cbcbcb;
+    --bg-tint: #f1f7ff;
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0b2447; color: #fff; font-family: 'Manrope', sans-serif; text-align: center; padding: 24px; }
-  .wrap { max-width: 480px; }
-  h1 { font-size: 32px; font-weight: 400; margin: 0 0 12px; }
-  p { color: #cbcbcb; font-size: 16px; line-height: 1.4; margin: 0 0 28px; }
-  a { display: inline-block; background: #bcd7ff; color: #000; text-decoration: none; padding: 13px 24px; border-radius: 3px; font-size: 15px; }
+  body { margin: 0; background: #fff; color: var(--ink); font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  p { margin: 0; }
+
+  .eyebrow { display: inline-flex; background: var(--accent); color: #000; font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 2px; }
+  .eyebrow.on-dark { background: var(--accent); color: #000; }
+  .section-head { display: flex; flex-direction: column; gap: 20px; }
+  .section-head h2 { margin: 0; font-size: 44px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.06; color: var(--navy); }
+  .section-head p.deck { margin: 0; font-size: 17px; line-height: 1.5; color: var(--body-light); }
+
+  section { padding: 96px 64px; }
+
+  /* ===== HERO ===== */
+  .hero-top { background: var(--navy); padding: 24px 64px 72px; display: flex; flex-direction: column; gap: 56px; }
+  .nav { display: flex; align-items: center; gap: 12px; }
+  .logo-mark { display: grid; grid-template-columns: 11px 11px; grid-template-rows: 11px 11px; gap: 3px; width: 25px; height: 25px; }
+  .logo-mark span { border-radius: 2px; display: block; }
+  .logo-mark span:nth-child(1) { background: #4a80eb; }
+  .logo-mark span:nth-child(2) { background: #8fb1e0; }
+  .logo-mark span:nth-child(3) { background: #a9c6ea; }
+  .logo-mark span:nth-child(4) { background: #6f89b3; }
+  .brand { font-size: 20px; font-weight: 600; color: #fff; letter-spacing: -0.02em; text-decoration: none; }
+
+  .hero-row { display: flex; gap: 64px; align-items: flex-start; }
+  .hero-left { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
+  .tag-research { display: inline-flex; border: 1px solid var(--accent); border-radius: 2px; padding: 5px 10px; font-size: 12px; font-weight: 500; color: var(--accent); align-self: flex-start; }
+  .hero-left h1 { margin: 0; font-size: 68px; font-weight: 400; line-height: 1.02; letter-spacing: -0.03em; color: #fff; }
+  .hero-left h1 span { color: var(--accent); }
+  .hero-subtitle { margin: 0; font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; color: var(--accent); }
+  .hero-deck { margin: 0; font-size: 18px; line-height: 1.5; color: var(--body-light); }
+
+  .toc-card { background: var(--navy-card); border-radius: 10.67px; padding: 28px 28px 20px; width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 0; }
+  .toc-card .toc-label { font-size: 12px; font-weight: 500; color: var(--accent); margin-bottom: 8px; }
+  .toc-item { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--navy-line); text-decoration: none; }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item .num { font-size: 12px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+  .toc-item .label { flex: 1 1 0; font-size: 16px; color: #fff; letter-spacing: -0.01em; }
+  .toc-item img { width: 16px; height: 16px; flex-shrink: 0; }
+
+  .stat-strip { display: flex; gap: 16px; flex-wrap: wrap; }
+  .stat-tile { flex: 1 1 0; min-width: 160px; background: var(--navy-card); border-radius: 10.67px; padding: 24px; display: flex; flex-direction: column; gap: 6px; }
+  .stat-tile .num { font-size: 48px; letter-spacing: -0.03em; color: var(--accent); line-height: 1; }
+  .stat-tile .label { font-size: 14px; color: var(--body-light); line-height: 1.3; }
+
+  /* ===== 01 THE QUESTION ===== */
+  .q-row { display: flex; gap: 64px; align-items: flex-start; }
+  .q-text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+  .q-text p.lede { font-size: 17px; line-height: 1.5; color: var(--ink-soft); }
+  .q-text p.lede strong { font-weight: 500; color: var(--ink); }
+
+  .classic-model { background: var(--accent); border-radius: 10.67px; padding: 32px; width: 640px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 28px; }
+  .classic-model .caption { font-size: 12px; font-weight: 500; color: var(--navy); }
+  .flow { display: flex; align-items: center; justify-content: space-between; }
+  .flow-node { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .flow-node .circle { width: 96px; height: 96px; border-radius: 48px; background: #fff; display: flex; align-items: center; justify-content: center; }
+  .flow-node .circle.dark { background: var(--navy); }
+  .flow-node .circle img { width: 40px; height: 40px; }
+  .flow-node .circle-label { font-size: 15px; font-weight: 500; color: var(--navy); }
+  .flow img.arrow { width: 28px; height: 28px; }
+  .badge-reserve { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: #fff; font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 2px; align-self: flex-start; }
+  .badge-reserve img { width: 16px; height: 16px; }
+  .classic-model .note { font-size: 16px; line-height: 1.45; color: var(--navy); }
+
+  .pull-quote { margin-top: 48px; background: var(--navy); border-radius: 20px; padding: 48px 56px; display: flex; gap: 40px; align-items: flex-start; }
+  .pull-quote .mark { font-size: 120px; line-height: 1; color: var(--accent); flex-shrink: 0; }
+  .pull-quote .body { flex: 1 1 0; display: flex; flex-direction: column; gap: 24px; }
+  .pull-quote .big { font-size: 40px; font-weight: 400; line-height: 1.12; letter-spacing: -0.02em; color: #fff; }
+  .pull-quote .big em { font-style: normal; color: var(--accent); }
+  .pull-quote .small { font-size: 17px; line-height: 1.5; color: var(--body-light); }
+
+  /* ===== 02 THREE MODELS ===== */
+  .bg-tint { background: var(--bg-tint); }
+  .models-intro { display: flex; gap: 64px; align-items: flex-start; margin-bottom: 40px; }
+  .models-intro .text { flex: 1 1 0; min-width: 280px; display: flex; flex-direction: column; gap: 20px; }
+  .models-intro .text p { font-size: 17px; line-height: 1.5; color: var(--ink-soft); }
+  .map-card-embed { flex-shrink: 0; width: 823px; max-width: 100%; border-radius: 20px; overflow: hidden; background: #fff; }
+  .quadrant-scale-wrap { width: 100%; overflow: hidden; }
+  #quadrantFrame2 { width: 980px; height: 787px; border: none; display: block; transform-origin: top left; }
+
+  .archetype-cards { display: flex; gap: 20px; align-items: stretch; }
+  .archetype { flex: 1 1 0; min-width: 0; background: #fff; border-radius: 10.67px; overflow: hidden; display: flex; flex-direction: column; }
+  .archetype-head { background: var(--accent); padding: 28px; display: flex; flex-direction: column; gap: 18px; }
+  .archetype-meta { display: flex; align-items: center; gap: 8px; }
+  .archetype-meta .dot { width: 14px; height: 14px; border-radius: 50%; border: 1.3px solid #0c447c; }
+  .archetype-meta .dot.blue { background: #b5d4f4; }
+  .archetype-meta .dot.green { background: #b7e8c0; }
+  .archetype-meta .dot.yellow { background: #f7e093; }
+  .archetype-meta span.label { font-size: 12px; font-weight: 500; color: var(--navy); }
+  .archetype-head img.icon { width: 44px; height: 44px; }
+  .archetype-head h3 { margin: 0; font-size: 30px; font-weight: 400; letter-spacing: -0.02em; color: var(--navy); }
+  .archetype-body { padding: 28px 28px 32px; display: flex; flex-direction: column; gap: 22px; flex: 1 1 auto; }
+  .archetype-body .examples-label { font-size: 12px; font-weight: 500; color: var(--accent-text); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; background: #eaf2ff; padding: 6px 10px 6px 8px; border-radius: 2px; font-size: 13px; font-weight: 500; color: var(--navy); }
+  .chip .dot8 { width: 8px; height: 8px; border-radius: 50%; }
+  .chip .dot8.blue { background: #b5d4f4; border: 1px solid #0c447c; }
+  .chip .dot8.green { background: #b7e8c0; border: 1px solid #0c447c; }
+  .chip .dot8.yellow { background: #f7e093; border: 1px solid #0c447c; }
+  .archetype-body .desc { font-size: 16px; line-height: 1.5; color: var(--ink-soft); }
+  .archetype-divider { height: 1px; background: #dce7f8; width: 100%; }
+  .sw-row { display: flex; gap: 12px; align-items: flex-start; }
+  .sw-row img { width: 22px; height: 22px; flex-shrink: 0; }
+  .sw-row .sw-label { font-size: 12px; font-weight: 500; }
+  .sw-row.strength .sw-label { color: var(--accent-text); }
+  .sw-row.weakness .sw-label { color: #5d5d5d; }
+  .sw-row .sw-text { font-size: 15px; line-height: 1.45; color: var(--navy); }
+
+  /* ===== 03 WHY THEY EXIST NOW ===== */
+  .dark-section { background: var(--navy); }
+  .forces { display: flex; gap: 20px; align-items: stretch; margin-top: 48px; }
+  .force-card { flex: 1 1 0; min-width: 0; background: var(--navy-card); border-radius: 10.67px; padding: 32px; display: flex; flex-direction: column; gap: 22px; }
+  .force-top { display: flex; align-items: center; justify-content: space-between; }
+  .force-icon-circle { width: 64px; height: 64px; border-radius: 32px; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; }
+  .force-icon-circle img { width: 30px; height: 30px; }
+  .force-num { font-size: 48px; letter-spacing: -0.03em; color: var(--navy-line); }
+  .force-card h3 { margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; color: #fff; }
+  .force-card .body { font-size: 16px; line-height: 1.5; color: var(--body-light); }
+  .force-divider { height: 1px; background: var(--navy-line); width: 100%; }
+  .force-callout { display: flex; gap: 14px; align-items: flex-start; }
+  .force-callout img { width: 28px; height: 28px; flex-shrink: 0; }
+  .force-callout .date { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; color: var(--accent); }
+  .force-callout .note { font-size: 14px; line-height: 1.4; color: var(--body-light); }
+  .shift-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .shift-chip { background: var(--navy-line); color: #fff; font-size: 13px; font-weight: 500; padding: 7px 12px; border-radius: 2px; }
+  .shift-chip.highlight { background: var(--accent); color: #000; }
+  .shift-row img { width: 18px; height: 18px; }
+  .flag-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .flag-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--navy-line); padding: 7px 12px 7px 10px; border-radius: 2px; }
+  .flag-chip .cur { font-size: 15px; font-weight: 600; color: var(--accent); }
+  .flag-chip .name { font-size: 13px; font-weight: 500; color: #fff; }
+
+  /* ===== 04 WHAT COMES NEXT ===== */
+  .roadmap { display: flex; gap: 20px; align-items: stretch; margin-top: 56px; }
+  .step { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+  .step-track { display: flex; align-items: center; }
+  .step-node { width: 44px; height: 44px; border-radius: 22px; background: var(--navy); color: var(--accent); font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-line { flex: 1 1 0; height: 2px; background: var(--accent); }
+  .step:last-child .step-line { background: #fff; }
+  .step-card { background: var(--bg-tint); border-radius: 10.67px; padding: 26px 24px 28px; min-height: 430px; display: flex; flex-direction: column; gap: 16px; }
+  .step-card img.step-icon { width: 34px; height: 34px; }
+  .step-card h3 { margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; color: var(--navy); }
+  .step-card .body { font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
+  .milestones { display: flex; flex-direction: column; gap: 8px; }
+  .milestone { background: #fff; border-radius: 4px; padding: 8px 12px; display: flex; flex-direction: column; gap: 2px; }
+  .milestone .m-name { font-size: 13px; font-weight: 600; color: var(--accent-text); }
+  .milestone .m-desc { font-size: 13px; line-height: 1.3; color: var(--navy); }
+
+  /* ===== 05 THE BOTTOM LINE ===== */
+  .bottom-claim { font-size: 34px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.18; color: var(--navy); }
+  .bottom-claim em { font-style: normal; color: var(--accent-text); }
+  .bottom-sub { font-size: 18px; line-height: 1.5; color: var(--ink-soft); }
+  .seats { display: flex; gap: 20px; align-items: stretch; margin-top: 48px; }
+  .seat { flex: 1 1 0; min-width: 0; background: #fff; border-radius: 10.67px; padding: 32px 32px 36px; display: flex; flex-direction: column; gap: 20px; }
+  .seat-top { display: flex; align-items: center; justify-content: space-between; }
+  .seat-icon-circle { width: 72px; height: 72px; border-radius: 36px; background: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .seat-icon-circle img { width: 34px; height: 34px; }
+  .seat-no { font-size: 12px; font-weight: 500; color: var(--accent-text); }
+  .seat h3 { margin: 0; font-size: 34px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.08; color: var(--navy); }
+  .seat p { font-size: 18px; line-height: 1.5; color: var(--ink-soft); }
+  .closing-banner { margin-top: 24px; background: var(--navy); border-radius: 20px; padding: 40px 48px; display: flex; gap: 24px; align-items: center; }
+  .closing-banner img { width: 48px; height: 48px; flex-shrink: 0; }
+  .closing-banner p { font-size: 34px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; color: #fff; flex: 1 1 0; }
+  .closing-banner p em { font-style: normal; color: var(--accent); }
+
+  /* ===== DEMO CTA (shared pattern) ===== */
+  .demo-cta { text-align: center; padding: 96px 64px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  .demo-cta .brand-row { display: flex; align-items: center; gap: 12px; }
+  .demo-cta .brand-row span.brand-name { font-size: 20px; font-weight: 600; color: var(--navy); }
+  .demo-cta h2 { margin: 0; font-size: 34px; font-weight: 700; letter-spacing: 0.02em; color: var(--navy); text-transform: uppercase; }
+  .demo-cta .rule { width: 48px; height: 3px; background: #2563eb; border-radius: 2px; }
+  .demo-person { display: flex; align-items: center; gap: 10px; }
+  .demo-person img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+  .demo-person .who { text-align: left; font-size: 14px; }
+  .demo-person .who .name { font-weight: 600; color: var(--navy); }
+  .demo-person .who .role { color: #5d5d5d; }
+  .demo-btn { display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #fff; font-weight: 600; font-size: 15px; padding: 13px 24px; border-radius: 24px; text-decoration: none; }
+  .demo-btn:hover { background: #1d4ed8; }
+
+  footer.site-footer { background: var(--navy); padding: 24px 64px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer.site-footer .brand { font-size: 16px; }
+  footer.site-footer .meta { font-size: 13px; color: var(--body-light); }
+
+  @media (max-width: 980px) {
+    section, .hero-top, .demo-cta { padding-left: 24px; padding-right: 24px; }
+    footer.site-footer { padding-left: 24px; padding-right: 24px; }
+    .hero-row, .q-row, .models-intro, .archetype-cards, .forces, .roadmap, .seats { flex-direction: column; }
+    .classic-model, .toc-card, .map-card-embed { width: 100%; }
+    .hero-left h1 { font-size: 40px; }
+    .section-head h2 { font-size: 32px; }
+    .stat-strip { flex-direction: column; }
+    .pull-quote { flex-direction: column; gap: 16px; padding: 32px; }
+    .pull-quote .mark { font-size: 64px; }
+    .pull-quote .big { font-size: 28px; }
+    .bottom-claim { font-size: 26px; }
+    .closing-banner { flex-direction: column; align-items: flex-start; }
+    .closing-banner p { font-size: 24px; }
+  }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Full research coming soon</h1>
-    <p>Thanks for your interest — the full Stablecoin Consortium research page is being finalized. Check back shortly.</p>
-    <a href="index.html">Back to Evidenta</a>
+
+  <div class="hero-top">
+    <div class="nav">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <span class="logo-mark"><span></span><span></span><span></span><span></span></span>
+        <span class="brand">evidenta</span>
+      </a>
+    </div>
+
+    <div class="hero-row">
+      <div class="hero-left">
+        <span class="tag-research">Research</span>
+        <h1>Who Owns the <span>Dollar Token?</span></h1>
+        <p class="hero-subtitle">The Three Business Models Behind Stablecoin Consortia</p>
+        <p class="hero-deck">Open USD went live this week, and it is only one of many consortium stablecoins. Looking at them together shows a pattern. Each group is answering the same question in a different way.</p>
+      </div>
+
+      <div class="toc-card">
+        <p class="toc-label">In this article</p>
+        <a href="#s01" class="toc-item"><span class="num">01</span><span class="label">The question behind every consortium</span><img src="assets/stablecoin-research/toc-arrow.svg" alt=""></a>
+        <a href="#s02" class="toc-item"><span class="num">02</span><span class="label">Three business models</span><img src="assets/stablecoin-research/toc-arrow.svg" alt=""></a>
+        <a href="#s03" class="toc-item"><span class="num">03</span><span class="label">Why they exist now</span><img src="assets/stablecoin-research/toc-arrow.svg" alt=""></a>
+        <a href="#s04" class="toc-item"><span class="num">04</span><span class="label">What comes next</span><img src="assets/stablecoin-research/toc-arrow.svg" alt=""></a>
+        <a href="#s05" class="toc-item"><span class="num">05</span><span class="label">The bottom line</span><img src="assets/stablecoin-research/toc-arrow.svg" alt=""></a>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-tile"><p class="num">30 Sep</p><p class="label">Open USD went live</p></div>
+      <div class="stat-tile"><p class="num">200+</p><p class="label">Open USD partners</p></div>
+      <div class="stat-tile"><p class="num">37</p><p class="label">banks behind Qivalis</p></div>
+      <div class="stat-tile"><p class="num">21</p><p class="label">institutions in the global bank group</p></div>
+    </div>
   </div>
+
+  <!-- 01 THE QUESTION -->
+  <section id="s01">
+    <div class="q-row">
+      <div class="q-text">
+        <span class="eyebrow">01</span>
+        <h2>The question behind every consortium</h2>
+        <p class="lede">Open USD went live on 30 September. Coinbase, Mastercard, Shopify, Stripe and Visa each hold an equal initial equity stake in the company behind it. Headlines called it a Circle killer. That reading is too narrow.</p>
+        <p class="lede"><strong>The deeper story is about where the money sits.</strong></p>
+      </div>
+      <div class="classic-model">
+        <p class="caption">The classic model</p>
+        <div class="flow">
+          <div class="flow-node">
+            <div class="circle"><img src="assets/stablecoin-research/users.svg" alt=""></div>
+            <span class="circle-label">Users</span>
+          </div>
+          <img class="arrow" src="assets/stablecoin-research/flow-arrow.svg" alt="">
+          <div class="flow-node">
+            <div class="circle"><img src="assets/stablecoin-research/platforms.svg" alt=""></div>
+            <span class="circle-label">Platforms</span>
+          </div>
+          <img class="arrow" src="assets/stablecoin-research/flow-arrow.svg" alt="">
+          <div class="flow-node">
+            <div class="circle dark"><img src="assets/stablecoin-research/issuer-coin.svg" alt=""></div>
+            <span class="circle-label">Issuer</span>
+          </div>
+        </div>
+        <div class="badge-reserve"><img src="assets/stablecoin-research/reserve-badge.svg" alt="">Reserve income</div>
+        <p class="note">In the classic model, reserve income largely accrues to the issuer. The issuer earns the interest on the reserves. The platforms that bring the users earn almost nothing.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <span class="mark">&ldquo;</span>
+      <div class="body">
+        <p class="big">A stablecoin is a distribution business with an <em>issuer-shaped profit pool.</em></p>
+        <p class="small">Every consortium on the map is an attempt to move that pool, or to stop it from leaving the building. The difference between them is who sits at the table and what they want back.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 THREE BUSINESS MODELS -->
+  <section id="s02" class="bg-tint">
+    <div class="models-intro">
+      <div class="text">
+        <span class="eyebrow">02</span>
+        <h2 style="font-size:42px;">Three business models</h2>
+        <p>Each consortium answers the same question in a different way. The dot colours on the map match the cards below.</p>
+      </div>
+      <div class="map-card-embed">
+        <div class="quadrant-scale-wrap" id="quadrantScaleWrap2">
+          <iframe id="quadrantFrame2" src="stablecoin-quadrant.html" scrolling="no" title="Stablecoin Consortium Map"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="archetype-cards">
+      <div class="archetype">
+        <div class="archetype-head">
+          <div class="archetype-meta"><span class="dot blue"></span><span class="label">Archetype 01</span></div>
+          <img class="icon" src="assets/stablecoin-research/arch-network.svg" alt="">
+          <h3>Network economics</h3>
+        </div>
+        <div class="archetype-body">
+          <p class="examples-label">Examples</p>
+          <div class="chips">
+            <span class="chip"><span class="dot8 blue"></span>Open USD</span>
+            <span class="chip"><span class="dot8 blue"></span>Global Dollar Network (USDG)</span>
+          </div>
+          <p class="desc">A single regulated issuer does the plumbing. Partners who bring volume get paid, in rewards or equity. This is a customer acquisition programme dressed as a coin.</p>
+          <div class="archetype-divider"></div>
+          <div class="sw-row strength"><img src="assets/stablecoin-research/arch-strength.svg" alt=""><div><p class="sw-label">Strength</p><p class="sw-text">The partners already own the rails: checkout, cards, exchanges, wallets.</p></div></div>
+          <div class="sw-row weakness"><img src="assets/stablecoin-research/arch-weakness.svg" alt=""><div><p class="sw-label">Weakness</p><p class="sw-text">It is still one issuer under the hood. The shared part is the economics, not the balance sheet.</p></div></div>
+        </div>
+      </div>
+
+      <div class="archetype">
+        <div class="archetype-head">
+          <div class="archetype-meta"><span class="dot green"></span><span class="label">Archetype 02</span></div>
+          <img class="icon" src="assets/stablecoin-research/arch-bank.svg" alt="">
+          <h3>Bank-owned issuer</h3>
+        </div>
+        <div class="archetype-body">
+          <p class="examples-label">Examples</p>
+          <div class="chips">
+            <span class="chip"><span class="dot8 green"></span>Qivalis</span>
+            <span class="chip"><span class="dot8 green"></span>21-bank USD group</span>
+            <span class="chip"><span class="dot8 green"></span>Japan&rsquo;s megabanks</span>
+            <span class="chip"><span class="dot8 green"></span>Zelle&rsquo;s ZLUSD</span>
+            <span class="chip"><span class="dot8 green"></span>Korea&rsquo;s planned consortium</span>
+          </div>
+          <p class="desc">Here the banks own the issuer. The motive is defensive. If customers hold stablecoins at a platform instead of deposits at a bank, the bank loses its cheapest funding. A token owned by many banks can be accepted by all of them.</p>
+          <div class="archetype-divider"></div>
+          <div class="sw-row strength"><img src="assets/stablecoin-research/arch-strength.svg" alt=""><div><p class="sw-label">Strength</p><p class="sw-text">Banks own trust and customers, and one pooled token works across all of them.</p></div></div>
+          <div class="sw-row weakness"><img src="assets/stablecoin-research/arch-weakness.svg" alt=""><div><p class="sw-label">Weakness</p><p class="sw-text">Banks own customers but not the crypto venues where stablecoins circulate. Competitors must also agree on governance before they can ship.</p></div></div>
+        </div>
+      </div>
+
+      <div class="archetype">
+        <div class="archetype-head">
+          <div class="archetype-meta"><span class="dot yellow"></span><span class="label">Archetype 03</span></div>
+          <img class="icon" src="assets/stablecoin-research/arch-jv.svg" alt="">
+          <h3>Licensed joint venture</h3>
+        </div>
+        <div class="archetype-body">
+          <p class="examples-label">Examples</p>
+          <div class="chips">
+            <span class="chip"><span class="dot8 yellow"></span>AllUnity</span>
+            <span class="chip"><span class="dot8 yellow"></span>Anchorpoint</span>
+            <span class="chip"><span class="dot8 yellow"></span>DDSC</span>
+          </div>
+          <p class="desc">Two or three specialists combine what none has alone: a licence, a bank balance sheet, distribution, technology.</p>
+          <div class="archetype-divider"></div>
+          <div class="sw-row strength"><img src="assets/stablecoin-research/arch-strength.svg" alt=""><div><p class="sw-label">Strength</p><p class="sw-text">The easiest model to execute. Small groups decide fast and the regulator knows who to call.</p></div></div>
+          <div class="sw-row weakness"><img src="assets/stablecoin-research/arch-weakness.svg" alt=""><div><p class="sw-label">Weakness</p><p class="sw-text">Most of these tokens are local currencies, which tend to stay small.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 WHY THEY EXIST NOW -->
+  <section id="s03" class="dark-section">
+    <div class="section-head">
+      <span class="eyebrow">03</span>
+      <h2 style="color:#fff;">Why they exist now</h2>
+      <p class="deck">Three forces arrived together.</p>
+    </div>
+
+    <div class="forces">
+      <div class="force-card">
+        <div class="force-top">
+          <div class="force-icon-circle"><img src="assets/stablecoin-research/force-doc.svg" alt=""></div>
+          <span class="force-num">01</span>
+        </div>
+        <h3>Regulation made it safe to build.</h3>
+        <p class="body">Hong Kong, the EU and the US now have licensing frameworks. A bank cannot commit balance sheet to a legal grey zone. A clear regime turns a research project into a product.</p>
+        <div class="force-divider"></div>
+        <div class="force-callout">
+          <img src="assets/stablecoin-research/force-calendar.svg" alt="">
+          <div><p class="date">January 2027</p><p class="note">The US GENIUS Act takes effect, or 120 days after final rules if that comes first.</p></div>
+        </div>
+      </div>
+
+      <div class="force-card">
+        <div class="force-top">
+          <div class="force-icon-circle"><img src="assets/stablecoin-research/force-layers.svg" alt=""></div>
+          <span class="force-num">02</span>
+        </div>
+        <h3>Nobody wants to build on a competitor.</h3>
+        <p class="body">A payment company will not route its volume through a token owned by a rival. A consortium turns a competitor&rsquo;s product into neutral infrastructure.</p>
+        <div class="force-divider"></div>
+        <div class="shift-row">
+          <span class="shift-chip">Competitor&rsquo;s product</span>
+          <img src="assets/stablecoin-research/force-shift-arrow.svg" alt="">
+          <span class="shift-chip highlight">Neutral infrastructure</span>
+        </div>
+      </div>
+
+      <div class="force-card">
+        <div class="force-top">
+          <div class="force-icon-circle"><img src="assets/stablecoin-research/force-globe.svg" alt=""></div>
+          <span class="force-num">03</span>
+        </div>
+        <h3>Money is political.</h3>
+        <p class="body">Euro, yen and won groups exist partly because dollar tokens dominate.</p>
+        <div class="force-divider"></div>
+        <div class="flag-chips">
+          <span class="flag-chip"><span class="cur">&euro;</span><span class="name">Qivalis</span></span>
+          <span class="flag-chip"><span class="cur">&yen;</span><span class="name">Japan megabanks</span></span>
+          <span class="flag-chip"><span class="cur">&#8361;</span><span class="name">Korea consortium</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 WHAT COMES NEXT -->
+  <section id="s04">
+    <div class="section-head">
+      <span class="eyebrow">04</span>
+      <h2>What comes next</h2>
+    </div>
+
+    <div class="roadmap">
+      <div class="step">
+        <div class="step-track"><div class="step-node">01</div><div class="step-line"></div></div>
+        <div class="step-card">
+          <img class="step-icon" src="assets/stablecoin-research/step-shuffle.svg" alt="">
+          <h3>Overlap and shake-out</h3>
+          <p class="body">Banks are hedging. Scotiabank and TD sit in the 21-bank stablecoin group and in Canada&rsquo;s separate tokenized deposit project. Expect some memberships to be quietly dropped as the groups harden into real companies with real costs.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-track"><div class="step-node">02</div><div class="step-line"></div></div>
+        <div class="step-card">
+          <img class="step-icon" src="assets/stablecoin-research/step-share.svg" alt="">
+          <h3>Distribution decides the winners</h3>
+          <p class="body">In the network model, the question is whether partners route volume through the coin or just attach a logo. Bank groups face the opposite problem: they own trust and customers but have to rent the venues. Whoever solves distribution first wins.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-track"><div class="step-node">03</div><div class="step-line"></div></div>
+        <div class="step-card">
+          <img class="step-icon" src="assets/stablecoin-research/step-calendar.svg" alt="">
+          <h3>The calendar sorts the field</h3>
+          <div class="milestones">
+            <div class="milestone"><span class="m-name">Qivalis</span><span class="m-desc">waits for its Dutch licence</span></div>
+            <div class="milestone"><span class="m-name">21-bank group</span><span class="m-desc">company H2 2026, launch H1 2027</span></div>
+            <div class="milestone"><span class="m-name">Korea</span><span class="m-desc">stuck in committee</span></div>
+          </div>
+          <p class="body">Slow groups will meet a market where Open USD already has liquidity and habits.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-track"><div class="step-node">04</div><div class="step-line"></div></div>
+        <div class="step-card">
+          <img class="step-icon" src="assets/stablecoin-research/step-link.svg" alt="">
+          <h3>Consortia will connect to each other</h3>
+          <p class="body">A bank group will not ignore a network with that much volume. Expect banks to join network models as distributors while building their own tokens. The lines between archetypes will blur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 THE BOTTOM LINE -->
+  <section id="s05" class="bg-tint">
+    <div class="section-head" style="gap:24px;">
+      <span class="eyebrow">05</span>
+      <h2>The bottom line</h2>
+      <p class="bottom-claim">The consortium wave is not about who builds the better coin. <em>It is about who earns the yield and who owns the customer relationship.</em></p>
+      <p class="bottom-sub">For an institution, the choice is now about which seat to take: owner, distributor or user.</p>
+    </div>
+
+    <div class="seats">
+      <div class="seat">
+        <div class="seat-top"><div class="seat-icon-circle"><img src="assets/stablecoin-research/seat-key.svg" alt=""></div><span class="seat-no">Seat 01</span></div>
+        <h3>Owner</h3>
+        <p>Owners carry the cost and the governance.</p>
+      </div>
+      <div class="seat">
+        <div class="seat-top"><div class="seat-icon-circle"><img src="assets/stablecoin-research/seat-share.svg" alt=""></div><span class="seat-no">Seat 02</span></div>
+        <h3>Distributor</h3>
+        <p>Distributors earn on volume.</p>
+      </div>
+      <div class="seat">
+        <div class="seat-top"><div class="seat-icon-circle"><img src="assets/stablecoin-research/seat-user.svg" alt=""></div><span class="seat-no">Seat 03</span></div>
+        <h3>User</h3>
+        <p>Users get cheaper rails with little control.</p>
+      </div>
+    </div>
+
+    <div class="closing-banner">
+      <img src="assets/stablecoin-research/seat-rings.svg" alt="">
+      <p>Most institutions will end up in <em>more than one seat.</em></p>
+    </div>
+  </section>
+
+  <!-- DEMO CTA -->
+  <section class="demo-cta">
+    <div class="brand-row">
+      <span class="logo-mark"><span style="background:#2563eb;"></span><span style="background:#c9c9c9;"></span><span style="background:#c9c9c9;"></span><span style="background:#8a8a8a;"></span></span>
+      <span class="brand-name">evidenta</span>
+    </div>
+    <h2>Let&rsquo;s arrange a demo</h2>
+    <div class="rule"></div>
+    <div class="demo-person">
+      <img src="assets/founder-maxim.jpg" alt="Maxim Krasnov" onerror="this.style.display='none'">
+      <div class="who"><div class="name">Maxim Krasnov</div><div class="role">Founder</div></div>
+    </div>
+    <a href="https://calendly.com/max-coinstruct/30min" target="_blank" rel="noopener" class="demo-btn">Book a demo</a>
+  </section>
+
+  <footer class="site-footer">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <span class="logo-mark"><span></span><span></span><span></span><span></span></span>
+      <span class="brand" style="color:#fff;">evidenta</span>
+    </a>
+    <span class="meta">Analysis: Coinstruct &middot; October 2026</span>
+  </footer>
+
+  <script>
+    (function () {
+      var frame = document.getElementById('quadrantFrame2');
+      var wrap = document.getElementById('quadrantScaleWrap2');
+      var naturalWidth = 980;
+      var naturalHeight = 787;
+      function fit() {
+        var scale = wrap.clientWidth / naturalWidth;
+        frame.style.transform = 'scale(' + scale + ')';
+        wrap.style.height = (naturalHeight * scale) + 'px';
+      }
+      fit();
+      window.addEventListener('resize', fit);
+    })();
+  </script>
+
 </body>
 </html>
