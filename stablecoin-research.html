@@ -100,7 +100,7 @@
   .models-intro .text p { font-size: 17px; line-height: 1.5; color: var(--ink-soft); }
   .map-card-embed { flex-shrink: 0; width: 823px; max-width: 100%; border-radius: 20px; overflow: hidden; background: #fff; }
   .quadrant-scale-wrap { width: 100%; overflow: hidden; }
-  #quadrantFrame2 { width: 980px; height: 787px; border: none; display: block; transform-origin: top left; }
+  #quadrantFrame2 { width: 980px; height: 727px; border: none; display: block; transform-origin: top left; }
 
   .archetype-cards { display: flex; gap: 20px; align-items: stretch; }
   .archetype { flex: 1 1 0; min-width: 0; background: #fff; border-radius: 10.67px; overflow: hidden; display: flex; flex-direction: column; }
@@ -640,7 +640,7 @@
       var frame = document.getElementById('quadrantFrame2');
       var wrap = document.getElementById('quadrantScaleWrap2');
       var naturalWidth = 980;
-      var naturalHeight = 787;
+      var naturalHeight = 727;
       function fit() {
         var scale = wrap.clientWidth / naturalWidth;
         frame.style.transform = 'scale(' + scale + ')';

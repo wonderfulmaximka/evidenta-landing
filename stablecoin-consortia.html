@@ -75,7 +75,7 @@
      technique as index.html's .quadrant-embed fit script. */
   .map-card-embed { width: 100%; max-width: 809px; flex-shrink: 0; border-radius: 20px; overflow: hidden; background: #fff; }
   .quadrant-scale-wrap { width: 100%; overflow: hidden; }
-  #quadrantFrame { width: 980px; height: 787px; border: none; display: block; transform-origin: top left; }
+  #quadrantFrame { width: 980px; height: 727px; border: none; display: block; transform-origin: top left; }
 
   /* WHAT'S IN THIS RESEARCH */
   .features { padding: 88px 64px 96px; display: flex; flex-direction: column; gap: 40px; }
@@ -168,7 +168,7 @@
       var frame = document.getElementById('quadrantFrame');
       var wrap = document.getElementById('quadrantScaleWrap');
       var naturalWidth = 980;
-      var naturalHeight = 787;
+      var naturalHeight = 727;
       function fit() {
         var scale = wrap.clientWidth / naturalWidth;
         frame.style.transform = 'scale(' + scale + ')';
