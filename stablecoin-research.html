@@ -220,6 +220,8 @@
 
   /* product timeline */
 
+  .evpanel { position: relative; height: 270px; background: #fff; border: 1px solid #e5e7eb; border-radius: 9px; overflow: hidden; }
+  .evpanel iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: top left; background: #fff; }
   .figma-modules { gap: 16px; }
   .figma-modules img { flex: 1 1 280px; min-width: 0; max-width: 100%; height: auto; }
   .figma-panel { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 9px; border: 1px solid #e5e7eb; background: #fff; }
@@ -581,10 +583,10 @@
         <div class="org-fact"><div class="fact-label">Scale</div><div class="fact-value">&euro;413.2B total assets</div></div>
       </div>
 
-      <div class="insight-modules figma-modules">
-        <img src="assets/stablecoin-research/mod-benchmarking.png" alt="Benchmarking: ABN AMRO among Netherlands peers">
-        <img src="assets/stablecoin-research/mod-partnerships.png" alt="Partnerships and vendors: relations with partners and vendors">
-        <img src="assets/stablecoin-research/mod-timeline.png" alt="Product data: timeline of development">
+      <div class="insight-modules">
+        <div class="insight-module"><p class="mod-label">BENCHMARKING</p><p class="mod-title">ABN AMRO among Netherlands peers</p><div class="evpanel" data-w="980" data-h="700"><iframe src="benchmark-embed.html" scrolling="no" loading="lazy" title=""></iframe></div></div>
+        <div class="insight-module"><p class="mod-label">PARTNERSHIPS &amp; VENDORS</p><p class="mod-title">Relations with partners and vendors</p><div class="evpanel" data-w="357" data-h="294"><iframe src="evidenta-network.html" scrolling="no" loading="lazy" title=""></iframe></div></div>
+        <div class="insight-module"><p class="mod-label">PRODUCT DATA</p><p class="mod-title">Timeline of development</p><div class="evpanel" data-w="374" data-h="228"><iframe src="evidenta-timeline.html" scrolling="no" loading="lazy" title=""></iframe></div></div>
       </div>
     </div>
   </section>
@@ -598,19 +600,19 @@
       <div class="insight-module" style="background:#fff;">
         <p class="mod-label">BENCHMARKING &amp; COMPETITION</p>
         <p class="mod-title" style="font-size:15px;">See where any bank stands among its regional peers. Our sector maps position financial institutions by adoption maturity, so you can show a client exactly who is ahead and where the gaps are.</p>
-        <img class="figma-panel" src="assets/stablecoin-research/panel-benchmarking.png" alt="Benchmarking quadrant">
+        <div class="evpanel" data-w="980" data-h="700"><iframe src="benchmark-embed.html" scrolling="no" loading="lazy" title=""></iframe></div>
       </div>
 
       <div class="insight-module" style="background:#fff;">
         <p class="mod-label">PARTNERSHIPS &amp; INVESTMENTS</p>
         <p class="mod-title" style="font-size:15px;">See who a bank works with and how its ecosystem is structured. We map partners, clients, investors and consortium memberships.</p>
-        <img class="figma-panel" src="assets/stablecoin-research/panel-network.png" alt="Partnership network">
+        <div class="evpanel" data-w="357" data-h="294"><iframe src="evidenta-network.html" scrolling="no" loading="lazy" title=""></iframe></div>
       </div>
 
       <div class="insight-module" style="background:#fff;">
         <p class="mod-label">PRODUCT DATA</p>
         <p class="mod-title" style="font-size:15px;">We capture the full anatomy of each digital asset product: token standard, custody setup, legal wrapper, fee structure, DeFi integrations and day-by-day deployment timeline.</p>
-        <img class="figma-panel" src="assets/stablecoin-research/panel-timeline.png" alt="Product timeline">
+        <div class="evpanel" data-w="374" data-h="228"><iframe src="evidenta-timeline.html" scrolling="no" loading="lazy" title=""></iframe></div>
       </div>
     </div>
   </section>
@@ -620,7 +622,7 @@
     <h2>Let&rsquo;s arrange a demo</h2>
     <div class="rule"></div>
     <!-- Calendly inline widget begin -->
-    <div class="calendly-inline-widget" data-url="https://calendly.com/max-coinstruct" style="min-width:320px;width:100%;max-width:1000px;height:700px;"></div>
+    <div class="calendly-inline-widget" data-url="https://calendly.com/max-coinstruct/evidenta" style="min-width:320px;width:100%;max-width:1000px;height:700px;"></div>
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     <!-- Calendly inline widget end -->
   </section>
@@ -643,6 +645,21 @@
         var scale = wrap.clientWidth / naturalWidth;
         frame.style.transform = 'scale(' + scale + ')';
         wrap.style.height = (naturalHeight * scale) + 'px';
+      }
+      fit();
+      window.addEventListener('resize', fit);
+    })();
+    (function () {
+      var panels = Array.prototype.slice.call(document.querySelectorAll('.evpanel'));
+      function fit() {
+        panels.forEach(function (p) {
+          var w = +p.dataset.w, h = +p.dataset.h, f = p.firstElementChild;
+          var scale = Math.min(p.clientWidth / w, p.clientHeight / h);
+          f.style.width = w + 'px'; f.style.height = h + 'px';
+          f.style.transform = 'scale(' + scale + ')';
+          f.style.left = ((p.clientWidth - w * scale) / 2) + 'px';
+          f.style.top = ((p.clientHeight - h * scale) / 2) + 'px';
+        });
       }
       fit();
       window.addEventListener('resize', fit);
