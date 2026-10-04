@@ -87,6 +87,11 @@
   .bento-head h3 { margin: 0; font-size: 20px; font-weight: 400; letter-spacing: -0.02em; color: var(--navy); flex: 1 1 0; }
   .bento p { margin: 0; font-size: 16px; line-height: 1.25; color: var(--navy); }
 
+  footer.site-footer { background: var(--navy); padding: 24px 64px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer.site-footer .brand { font-size: 16px; }
+  footer.site-footer .meta { font-size: 13px; color: #cbcbcb; }
+  @media (max-width: 980px) { footer.site-footer { padding-left: 24px; padding-right: 24px; } }
+
   @media (max-width: 980px) {
     .top { padding: 20px 28px 48px; }
     .hero { flex-direction: column; gap: 40px; }
@@ -163,6 +168,14 @@
     </div>
   </div>
 
+  <footer class="site-footer">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <span class="logo-mark"><span></span><span></span><span></span><span></span></span>
+      <span class="brand">evidenta</span>
+    </a>
+    <span class="meta">Data platform for Digital Assets</span>
+  </footer>
+
   <script>
     (function () {
       var frame = document.getElementById('quadrantFrame');
@@ -206,7 +219,7 @@
             return;
           }
           btn.textContent = 'Redirecting…';
-          window.location.href = 'stablecoin-research.html';
+          window.location.href = 'stablecoin-research';
         }).catch(function () {
           status.textContent = 'Something went wrong — please try again.';
           status.classList.add('error');
