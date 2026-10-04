@@ -123,8 +123,8 @@
           <label for="linkedinUrl">Your LinkedIn link</label>
           <input type="url" id="linkedinUrl" name="linkedinUrl" placeholder="paste here" required>
           <div class="lead-terms">
-            <input type="checkbox" id="termsCheck" required>
-            <label for="termsCheck" style="margin:0;"><a href="#">Terms and conditions</a></label>
+            <input type="checkbox" id="termsCheck">
+            <label for="termsCheck" style="margin:0;font-size:12px;font-weight:500;color:var(--accent);line-height:1.15;cursor:pointer;">I want to receive more research like this by email</label>
           </div>
           <div class="lead-btn-wrap">
             <button type="submit" class="lead-btn" id="leadSubmit">Go to Research</button>
@@ -209,7 +209,8 @@
         btn.textContent = 'Submitting…';
 
         supabaseClient.from('stablecoin_consortia_leads').insert({
-          linkedin_url: input.value.trim()
+          linkedin_url: input.value.trim(),
+          wants_emails: document.getElementById('termsCheck').checked
         }).then(function (res) {
           if (res.error) {
             status.textContent = 'Something went wrong — please try again.';
