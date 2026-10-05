@@ -83,7 +83,12 @@
   @media (max-width: 980px) {
     .top { padding: 20px 28px 48px; }
     .hero { flex-direction: column; gap: 40px; }
-    .map-card-embed { max-width: 100%; }
+    .hero { gap: 20px; }
+    .hero-left { display: contents; }
+    .hero-left > * { order: 1; }
+    .hero-left .lead-form { order: 3; padding-top: 4px; max-width: none; }
+    .map-card-embed.report-cover { order: 2; background: transparent; border-radius: 0; overflow: visible; padding: 8px 0 12px; max-width: none; }
+    .report-cover img { max-width: 72%; max-height: 380px; margin: 0 auto; }
     .features { padding: 64px 28px; }
     .features-row { flex-direction: column; }
     .hero-left h1 { font-size: 36px; }
@@ -123,7 +128,7 @@
       </div>
 
       <div class="map-card-embed report-cover">
-        <img src="assets/stablecoin-consortia/report-cover.webp" alt="Evidenta research report: Stablecoin Domination 2030" width="1101" height="1429">
+        <img src="assets/stablecoin-consortia/report-cover-transparent.webp" alt="Evidenta research report: Stablecoin Domination 2030" width="1064" height="1191">
       </div>
     </div>
   </div>
