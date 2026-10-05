@@ -61,15 +61,9 @@
   .lead-note { margin: 0; text-align: center; font-size: 15px; color: #9aa6bd; }
   .lead-status { font-size: 13px; color: #ffb4b4; min-height: 18px; text-align: center; }
 
-  /* Quadrant map embed — same footprint the old hand-built chart card used
-     (761px chart + 24px padding each side = 809px), now filled by the
-     standalone stablecoin-quadrant.html map via a scaled iframe. The embed's
-     natural size (980x787) is measured from that file; we scale it down to
-     fit this card's width and scale the wrapper height to match, same
-     technique as index.html's .quadrant-embed fit script. */
   .map-card-embed { width: 100%; max-width: 809px; flex-shrink: 0; border-radius: 20px; overflow: hidden; background: #fff; }
-  .quadrant-scale-wrap { width: 100%; overflow: hidden; }
-  #quadrantFrame { width: 980px; height: 727px; border: none; display: block; transform-origin: top left; }
+  .report-cover { display: flex; justify-content: center; align-items: center; padding: 16px; }
+  .report-cover img { display: block; width: auto; height: auto; max-width: 100%; max-height: 640px; }
 
   /* WHAT'S IN THIS RESEARCH */
   .features { padding: 88px 64px 96px; display: flex; flex-direction: column; gap: 40px; }
@@ -128,10 +122,8 @@
         </form>
       </div>
 
-      <div class="map-card-embed" id="quadrantEmbed">
-        <div class="quadrant-scale-wrap" id="quadrantScaleWrap">
-          <iframe id="quadrantFrame" src="stablecoin-quadrant.html" scrolling="no" title="Stablecoin Consortium Map"></iframe>
-        </div>
+      <div class="map-card-embed report-cover">
+        <img src="assets/stablecoin-consortia/report-cover.webp" alt="Evidenta research report: Stablecoin Domination 2030" width="1101" height="1429">
       </div>
     </div>
   </div>
@@ -172,19 +164,6 @@
   </footer>
 
   <script>
-    (function () {
-      var frame = document.getElementById('quadrantFrame');
-      var wrap = document.getElementById('quadrantScaleWrap');
-      var naturalWidth = 980;
-      var naturalHeight = 727;
-      function fit() {
-        var scale = wrap.clientWidth / naturalWidth;
-        frame.style.transform = 'scale(' + scale + ')';
-        wrap.style.height = (naturalHeight * scale) + 'px';
-      }
-      fit();
-      window.addEventListener('resize', fit);
-    })();
 
     (function () {
       var SUPABASE_URL = 'https://gebykurgoiswueijaeiz.supabase.co';
