@@ -41,31 +41,25 @@
   .hero-left h1 span { color: var(--accent); }
   .hero-copy { margin: 0; font-size: 16px; line-height: 1.25; color: #cbcbcb; max-width: 420px; }
 
-  .lead-form { display: flex; flex-direction: column; gap: 12px; padding-top: 29px; width: 100%; max-width: 420px; }
-  .lead-form label { font-size: 12px; font-weight: 500; color: var(--accent); }
-  .lead-form input[type="text"], .lead-form input[type="url"] {
-    background: #fff; border: none; border-radius: 4px; height: 46px; padding: 0 16px;
-    font-family: 'Manrope', sans-serif; font-size: 14px; color: var(--ink); width: 100%;
+  .lead-form { display: flex; flex-direction: column; gap: 18px; padding-top: 20px; width: 100%; max-width: 440px; }
+  .lead-field { display: flex; flex-direction: column; gap: 10px; }
+  .lead-form label { font-size: 15px; font-weight: 600; color: var(--accent); }
+  .lead-form input[type="text"], .lead-form input[type="email"] {
+    background: #fff; border: 1.5px solid #d9dbe0; border-radius: 10px; height: 54px; padding: 0 18px;
+    font-family: 'Manrope', sans-serif; font-size: 16px; color: var(--ink); width: 100%;
   }
-  .lead-form input::placeholder { color: #5d5d5d; }
-  .lead-form input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-  .lead-terms { display: flex; align-items: center; gap: 10px; }
-  .lead-terms input[type="checkbox"] {
-    appearance: none; width: 16px; height: 16px; border: 1.5px solid var(--accent); border-radius: 3px;
-    background: transparent no-repeat center; background-size: 10px 10px; flex-shrink: 0; cursor: pointer; margin: 0;
-  }
-  .lead-terms input[type="checkbox"]:checked { background-image: url('assets/stablecoin-consortia/check.svg'); }
-  .lead-terms a { font-size: 12px; font-weight: 500; color: var(--accent); line-height: 1.15; }
-  .lead-btn-wrap { padding-top: 8px; }
+  .lead-form input::placeholder { color: #9aa0aa; }
+  .lead-form input:focus { outline: none; border-color: #3366ff; box-shadow: 0 0 0 3px rgba(51,102,255,0.25); }
+  .lead-form input.invalid { border-color: #e5484d; }
   .lead-btn {
-    display: inline-flex; align-items: center; justify-content: center; background: var(--accent); color: #000;
-    border: none; border-radius: 3px; padding: 15px 22px; font-family: 'Manrope', sans-serif; font-size: 15px;
-    letter-spacing: -0.02em; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px; width: 100%; background: #3366ff; color: #fff;
+    border: none; border-radius: 10px; height: 54px; padding: 0 22px; font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 500;
+    cursor: pointer; margin-top: 2px;
   }
-  .lead-btn:disabled { opacity: 0.55; cursor: not-allowed; }
-  .lead-btn:not(:disabled):hover { background: #a7c9fa; }
-  .lead-status { font-size: 13px; color: var(--accent); min-height: 18px; }
-  .lead-status.error { color: #ffb4b4; }
+  .lead-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .lead-btn:not(:disabled):hover { background: #2a58e0; }
+  .lead-note { margin: 0; text-align: center; font-size: 15px; color: #9aa6bd; }
+  .lead-status { font-size: 13px; color: #ffb4b4; min-height: 18px; text-align: center; }
 
   /* Quadrant map embed — same footprint the old hand-built chart card used
      (761px chart + 24px padding each side = 809px), now filled by the
@@ -119,17 +113,18 @@
         <h1>Stablecoin Consortium <span>Map</span></h1>
         <p class="hero-copy">See biggest banks and FIs getting together to launch stablecoins.</p>
 
-        <form class="lead-form" id="leadForm">
-          <label for="linkedinUrl">Your LinkedIn link</label>
-          <input type="url" id="linkedinUrl" name="linkedinUrl" placeholder="paste here" required>
-          <div class="lead-terms">
-            <input type="checkbox" id="termsCheck">
-            <label for="termsCheck" style="margin:0;font-size:12px;font-weight:500;color:var(--accent);line-height:1.15;cursor:pointer;">I want to receive more research like this by email</label>
+        <form class="lead-form" id="leadForm" novalidate>
+          <div class="lead-field">
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Jane Smith" autocomplete="name" required>
           </div>
-          <div class="lead-btn-wrap">
-            <button type="submit" class="lead-btn" id="leadSubmit">Go to Research</button>
+          <div class="lead-field">
+            <label for="workEmail">Work email</label>
+            <input type="email" id="workEmail" name="workEmail" placeholder="you@company.com" autocomplete="email" required>
           </div>
-          <div class="lead-status" id="leadStatus"></div>
+          <button type="submit" class="lead-btn" id="leadSubmit">Send me the report <span aria-hidden="true">&rarr;</span></button>
+          <p class="lead-note">No spam ever, monthly tokenization research only.</p>
+          <div class="lead-status" id="leadStatus" role="alert"></div>
         </form>
       </div>
 
@@ -197,36 +192,50 @@
       var supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
       var form = document.getElementById('leadForm');
-      var input = document.getElementById('linkedinUrl');
+      var nameInput = document.getElementById('fullName');
+      var emailInput = document.getElementById('workEmail');
       var btn = document.getElementById('leadSubmit');
       var status = document.getElementById('leadStatus');
+      var BTN_HTML = btn.innerHTML;
+      var FREE = /@(gmail|googlemail|yahoo|ymail|hotmail|outlook|live|msn|icloud|me|aol|proton|protonmail|gmx|mail|yandex|qq|163|126|zoho)\./i;
+      var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+      function fail(input, msg) {
+        input.classList.add('invalid');
+        status.textContent = msg;
+        input.focus();
+      }
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         status.textContent = '';
-        status.classList.remove('error');
+        nameInput.classList.remove('invalid');
+        emailInput.classList.remove('invalid');
+
+        var name = nameInput.value.trim().replace(/\s+/g, ' ');
+        var email = emailInput.value.trim().toLowerCase();
+
+        if (name.length < 2 || name.indexOf(' ') === -1) { return fail(nameInput, 'Please enter your first and last name.'); }
+        if (!EMAIL.test(email)) { return fail(emailInput, 'Please enter a valid email address.'); }
+        if (FREE.test(email)) { return fail(emailInput, 'Please use your work email, not a personal address.'); }
+
         btn.disabled = true;
-        btn.textContent = 'Submitting…';
+        btn.textContent = 'Sending…';
+
+        function reset() {
+          status.textContent = 'Something went wrong. Please try again.';
+          btn.disabled = false;
+          btn.innerHTML = BTN_HTML;
+        }
 
         supabaseClient.from('stablecoin_consortia_leads').insert({
-          linkedin_url: input.value.trim(),
-          wants_emails: document.getElementById('termsCheck').checked
+          full_name: name,
+          email: email
         }).then(function (res) {
-          if (res.error) {
-            status.textContent = 'Something went wrong — please try again.';
-            status.classList.add('error');
-            btn.disabled = false;
-            btn.textContent = 'Go to Research';
-            return;
-          }
+          if (res.error) { return reset(); }
           btn.textContent = 'Redirecting…';
           window.location.href = 'stablecoin-research';
-        }).catch(function () {
-          status.textContent = 'Something went wrong — please try again.';
-          status.classList.add('error');
-          btn.disabled = false;
-          btn.textContent = 'Go to Research';
-        });
+        }).catch(reset);
       });
     })();
   </script>
